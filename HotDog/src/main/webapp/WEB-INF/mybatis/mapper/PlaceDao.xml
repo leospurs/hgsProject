@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  namespace에는 interface의 전체 이름을 기입 -->
+<mapper namespace="com.bitcamp.hgs.place.dao.PlaceDao">
+
+	
+	<select id="selectList"
+			resultType="com.bitcamp.hgs.place.domain.Places">
+			
+	select p.place_idx,
+	   p.title,
+	   p.new_address,
+       p.old_address,
+       p.subject_category,
+       pf.file_name
+       from places p left outer join place_files pf on (p.place_idx = pf.place_idx)
+       order by p.place_idx limit #{param1}, #{param2}
+	</select>
+	
+	
+	<select id="selectByIdx"
+			resultType="com.bitcamp.hgs.place.domain.Places">
+		
+	select 
+	   p.title,
+       p.old_address,
+       p.phone,
+       p.affiliation,
+       p.subject_category,
+       p.homepage,
+       pf.file_name
+       from places p left outer join place_files pf on (p.place_idx = pf.place_idx)
+		where p.place_idx=#{idx} 
+	
+	
+	</select>
+	
+	
+<!-- 	<insert id="insertPlace" -->
+<!-- 			parameterType="com.bitcamp.op.member.domain.PlaceRegRequest" -->
+<!-- 			useGeneratedKeys="true" -->
+<!-- 			keyProperty="idx"> -->
+			
+<!-- 		INSERT INTO member (userid, password, username, photo) -->
+<!--  	 VALUES (#{userid},#{pw},#{username},#{fileName}) -->
+		
+	
+<!-- 	</insert> -->
+	</mapper>
