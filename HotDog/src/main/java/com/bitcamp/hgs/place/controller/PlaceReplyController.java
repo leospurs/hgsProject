@@ -12,18 +12,15 @@ import com.bitcamp.hgs.place.service.PlaceReplyRegService;
 @RequestMapping("/place/reply")
 public class PlaceReplyController {
 	
-	//@Autowired
-	//private PlaceReplyRegService regService;
-	
-	//@Autowired
-	// private ReplyDeleteService deleteService;
+	@Autowired
+	private PlaceReplyRegService regService;
 	
 	// 후기 입력
-	//@PostMapping
-	//public String regReply(PlaceReplys replys) {
+	@PostMapping
+	public String regReply(PlaceReplys replys) {
 		
-		//regService.insertReply(replys);
-		//System.out.println(replys);
-		//return String.valueOf(replys.getPlaceIdx());
-	//}
+		regService.insertReply(replys);
+		System.out.println(replys);
+		return String.valueOf(replys.getPlaceIdx());
+	}
 }

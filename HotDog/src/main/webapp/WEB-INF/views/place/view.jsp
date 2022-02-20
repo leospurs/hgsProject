@@ -93,9 +93,37 @@ geocoder.addressSearch('${pageView.oldAddress}', function(result, status) {
     } 
 });    
 </script>
-
-	<h3>후기</h3>
 	
+	<div id="relplyList">
+		<h3>후기</h3>
+		<c:if test="${not empty replyList}">
+			<c:forEach items="${replyList}" var="reply">
+				
+				<div id="relply${reply.idx}">
+				
+					<p>
+						${reply.content}
+					</p>
+					
+				</div>
+			</c:forEach>
+		</c:if>
+	</div>
+	
+	<div>
+		
+		<form id="replyWriteForm">
+		
+			<textarea name="message" id="messaege" rows="5" cols="70%" required>
+			</textarea>
+			
+			<input type="hidden" name="PlaceIdx" value="${pageView.placeIdx}">
+				
+			<br> 
+			
+			<input type="submit" value="작성" >
+		</form>
+	</div>
 	 
 	
 	<a href="list">목록으로</a>

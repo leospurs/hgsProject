@@ -10,15 +10,15 @@ import com.bitcamp.hgs.place.domain.PlaceReplys;
 @Service
 public class PlaceReplyRegService {
 
-	//private PlaceReplyDao dao;
+	private PlaceReplyDao dao;
 	
-	//@Autowired
-	//private SqlSessionTemplate template;
+	@Autowired
+	private SqlSessionTemplate template;
 	
-	//public void insertReply(PlaceReplys replys) {
+	public void insertReply(PlaceReplys replys) {
 		
-		//dao = template.getMapper(PlaceReplyDao.class);
+		dao = template.getMapper(PlaceReplyDao.class);
 		
-		//dao.insertReply(replys);
-	//}
+		dao.insertReply(replys);
+	}
 }

@@ -4,6 +4,61 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+	body{
+  margin-top: 100px;
+  font-family: 'Trebuchet MS', serif;
+  line-height: 1.6
+}
+
+.container{
+  width: 500px;
+  margin: 0 auto;
+}
+
+ul.tabs{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+ul.tabs li{
+  background: none;
+  color: #222;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+ul.tabs li.current{
+  background: #ededed;
+  color: #222;
+}
+
+.tab-content{
+  display: none;
+  background: #ededed;
+  padding: 15px;
+}
+
+.tab-content.current{
+  display: inherit;
+}
+</style>
+<script>
+	$(document).ready(function(){
+	  
+	  $('ul.tabs li').click(function(){
+	    var tab_id = $(this).attr('data-tab');
+
+	    $('ul.tabs li').removeClass('current');
+	    $('.tab-content').removeClass('current');
+
+	    $(this).addClass('current');
+	    $("#"+tab_id).addClass('current');
+	  })
+
+	})
+</script>
 <meta charset="UTF-8">
 <title>추천장소 리스트</title>
 </head>
@@ -24,13 +79,16 @@
 		<div>전체 추천장소 수 : ${listView.totalCount}</div>
 
 		<!-- 탭 메뉴 -->
-		<section id="category_tab_wrap" class="rounded">
-			<h4 class="tab-btn-1">
-				<a href="#" class="on">전체</a>
-			</h4>
-			<div class="tab-container-1">
-				<table>
-					<c:if test="${not empty listView.list}">
+		<ul class="tabs">
+			<li class="tab-link current" data-tab="tab-1">전체보기</li>
+			<li class="tab-link" data-tab="tab-2">공원</li>
+			<li class="tab-link" data-tab="tab-3">애견카페</li>
+			<li class="tab-link" data-tab="tab-4">동물병원</li>
+		</ul>
+		
+		<div id="tab-1"class="tab-content current">
+			<table>
+				<c:if test="${not empty listView.list}">
 						<tr>
 							<th>idx</th>
 							<th>이름</th>
@@ -73,36 +131,7 @@
 			</div>
 			
 	
-	<script>
-		$(function() {
-			$(".main-visual-slide").bxSlider({
-				auto : true,
-				pause : 2000,
-				autoHover : true,
-				autoControls : true,
-				autoControlsCombine : true
-			});
-
-			$("#category-tab-wrap h4 a").on("click", tabmenu);
-			function tabmenu(e) {
-				e.preventDefault();
-				var $ts = $(this);
-				var $next = $ts.parent().next();
-				if ($next.is(":hidden")) {
-					$("#category-tab-wrap h4 a").removeClass("on");
-					$ts.addClass("on");
-					$("#category-tab-wrap > div:visible").hide();
-					$next.show();
-				}
-			}
-
-			$('.grid').isotope({
-				// options
-				itemSelector : '.grid-item',
-				layoutMode : 'fitRows'
-			});
-		});
-	</script>
+	
 
 
 

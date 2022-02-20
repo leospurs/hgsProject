@@ -27,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select 
 	   p.title,
        p.old_address,
+       p.new_address,
        p.phone,
        p.affiliation,
        p.subject_category,
