@@ -13,6 +13,7 @@
 <a href="/hgs/place/list">추천장소 목록보기</a>
 
 
+
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>

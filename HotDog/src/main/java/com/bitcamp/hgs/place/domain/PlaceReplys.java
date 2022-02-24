@@ -1,18 +1,22 @@
 package com.bitcamp.hgs.place.domain;
 
+import java.sql.Timestamp;
+
 public class PlaceReplys {
 	
 	private int placeReplyIdx;	// 추천 장소 댓글 idx
 	private int placeIdx;		// 추천 장소 idx
-	private int memberIdx;		// 일반 회원 idx
+	private int memberIdx = 1;		// 일반 회원 idx
 	private int star;			// 별점 
 	private String content;		// 추천 장소 댓글 내용
 	private String fileName;	// 파일 이름
-	private String createDate;	// 작성날짜
-	private String editDate;	// 수정날짜
+	private Timestamp createDate;	// 작성날짜
+	private Timestamp editDate;	// 수정날짜
+	
+	public PlaceReplys() {}
 	
 	public PlaceReplys(int placeReplyIdx, int placeIdx, int memberIdx, int star, String content, String fileName,
-			String createDate, String editDate) {
+			Timestamp createDate, Timestamp editDate) {
 		
 		this.placeReplyIdx = placeReplyIdx;
 		this.placeIdx = placeIdx;
@@ -72,19 +76,19 @@ public class PlaceReplys {
 		this.fileName = fileName;
 	}
 
-	public String getCreateDate() {
+	public Timestamp getCreateDate() {
 		return createDate;
 	}
 
-	public void setCreateDate(String createDate) {
+	public void setCreateDate(Timestamp createDate) {
 		this.createDate = createDate;
 	}
 
-	public String getEditDate() {
+	public Timestamp getEditDate() {
 		return editDate;
 	}
 
-	public void setEditDate(String editDate) {
+	public void setEditDate(Timestamp editDate) {
 		this.editDate = editDate;
 	}
 

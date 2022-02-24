@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  namespace에는 interface의 전체 이름을 기입 -->
+<mapper namespace="com.bitcamp.hgs.place.dao.PlaceScrapDao">
+
+	<!-- 추천 장소 스크랩 -->
+	<insert id="createPlaceScrap">
+		INSERT INTO hgs.place_scraps (place_idx, member_idx)
+		VALUES (#{placeIdx}, #{memberIdx)
+	</insert>
+	
+	<delete id="deletePlaceScrap">
+		DELETE FROM hgs.place_scraps
+		WHERE place_idx = #{placeIdx} AND member_idx = #{memberIdx}
+	</delete>
+	
+	<select id="getScrapList">
+		
+		
+	</select>
+	
+</mapper>

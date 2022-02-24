@@ -75,7 +75,8 @@ ul.tabs li.current{
 	<!-- content 시작 -->
 	<div id="content">
 		<h3>추천장소 목록</h3>
-
+		<a href="register">추천장소 등록하기</a>
+		<a href="scrapList">스크랩한 목록보기</a>
 		<div>전체 추천장소 수 : ${listView.totalCount}</div>
 
 		<!-- 탭 메뉴 -->
@@ -100,7 +101,7 @@ ul.tabs li.current{
 							<tr>
 								<td>${places.placeIdx}</td>
 								<td><a
-									href="${pageContext.request.contextPath}/place/view?idx=${places.placeIdx}">
+									href="${pageContext.request.contextPath}/place/view?placeIdx=${places.placeIdx}">
 										${places.title} </a></td>
 								<td>${places.oldAddress}</td>
 								<td>${places.subjectCategory}</td>
@@ -131,8 +132,7 @@ ul.tabs li.current{
 			</div>
 			
 	
-	
-
+			
 
 
 

@@ -2,10 +2,12 @@ package com.bitcamp.hgs.place.domain;
 
 import java.sql.Timestamp;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Places {
 	
 	private int placeIdx;	// 추천 장소idx
-	private int adminIdx;	// 관리자 회원 번호idx
+	private int adminIdx = 1;	// 관리자 회원 번호idx
 	private String title;	// 추천 장소 이름
 	private String subjectCategory;	// 추천 장소 카테고리
 	private String affiliation;	// 추천장소 위치 지역 
@@ -21,6 +23,7 @@ public class Places {
 	private Timestamp updateDate;	// 수정날짜
 	private int state;	// 폐점여부
 	private String fileName;
+	private MultipartFile photo;
 	
 	public Places() {}
 
@@ -185,6 +188,17 @@ public class Places {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	
+	
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+
+
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
 	}
 
 

@@ -1,10 +1,14 @@
 package com.bitcamp.hgs.place.dao;
 
+import java.util.List;
+
 import com.bitcamp.hgs.place.domain.PlaceReplys;
 
 public interface PlaceReplyDao {
 
-	void insertReply(PlaceReplys replys);
+	public List<PlaceReplys> selectlist(int idx);
 	
-	int deleteByIdx(int idx);
+	public void insertReply(PlaceReplys replys);
+	
+	public int deleteByIdx(int idx);
 }

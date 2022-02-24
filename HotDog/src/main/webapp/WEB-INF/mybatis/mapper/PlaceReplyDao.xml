@@ -6,20 +6,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.bitcamp.hgs.place.dao.PlaceReplyDao">
 
+	<select id="selectList"
+			resultType="com.bitcamp.hgs.place.domain.PlaceReplys">
+	select member_idx,
+		   star,
+		   content,
+		   file_name,
+		   create_date
+	from place_replys where place_idx=${idx}
+	</select>
+	
+	
 	<insert id="insertReply"
 			parameterType="com.bitcamp.hgs.place.domain.PlaceReplys"
 			useGeneratedKeys="true"
-			keyProperty="idx"
+			keyProperty="placeReplyIdx"
 	>
 	
-	INSERT INTO place_replys (content, member_idx, place_idx) 
-	VALUES (#{message}, #{memberIdx}, #{guestbookIdx})
+	INSERT INTO place_replys (place_idx, member_idx, star, content) 
+	VALUES (#{placeIdx}, #{memberIdx}, #{star}, #{content})
 	
 	</insert>
 	
 	
 	
-	
+	<delete id="deleteByIdx">
+		delete from reply where place_reply_idx=#{idx}
+	</delete>
 	
 	
 	

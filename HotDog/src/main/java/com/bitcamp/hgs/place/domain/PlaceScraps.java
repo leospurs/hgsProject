@@ -2,34 +2,38 @@ package com.bitcamp.hgs.place.domain;
 
 public class PlaceScraps {
 	
-	private int place_idx;	// 추천 장소 idx
-	private int member_idx;	// 일반 회원 idx
+	private int placeIdx;	// 추천 장소 idx
+	private int memberIdx;	// 일반 회원 idx
 	
-	public PlaceScraps(int place_idx, int member_idx) {
+	
+	public PlaceScraps() {}
+	
+	
+	public PlaceScraps(int placeIdx, int memberIdx) {
 		
-		this.place_idx = place_idx;
-		this.member_idx = member_idx;
+		this.placeIdx = placeIdx;
+		this.memberIdx = memberIdx;
 	}
 
-	public int getPlace_idx() {
-		return place_idx;
+	public int getPlaceIdx() {
+		return placeIdx;
 	}
 
-	public void setPlace_idx(int place_idx) {
-		this.place_idx = place_idx;
+	public void setPlaceIdx(int placeIdx) {
+		this.placeIdx = placeIdx;
 	}
 
-	public int getMember_idx() {
-		return member_idx;
+	public int getMemberIdx() {
+		return memberIdx;
 	}
 
-	public void setMember_idx(int member_idx) {
-		this.member_idx = member_idx;
+	public void setMemberIdx(int memberIdx) {
+		this.memberIdx = memberIdx;
 	}
 
 	@Override
 	public String toString() {
-		return "PlaceScraps [place_idx=" + place_idx + ", member_idx=" + member_idx + "]";
+		return "PlaceScraps [placeIdx=" + placeIdx + ", memberIdx=" + memberIdx + "]";
 	}	
 	
 	

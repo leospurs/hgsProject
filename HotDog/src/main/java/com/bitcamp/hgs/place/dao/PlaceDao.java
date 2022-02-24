@@ -16,9 +16,14 @@ public interface PlaceDao {
 	// 추천장소 게시물 리스트(전체)
 	public List<Places> selectList(int index, int count);
 	
-	// 추천장소 게시물 상세보기
-	public Places selectByIdx(int idx);
+	// 추천장소 게시물 상세보기(placeIdx값으로)
+	public Places selectByIdx(int PlaceIdx);
 	
-	// 추천장소 인덱스에 연결된 주소 가져오기
-	public Places selectAddressByIdx(int idx);
+	// 추천장소 등록하기
+	public void registPlace(Places place);
+	
+	// 추천장소 삭제하기
+	public int deletePlace(int PlaceIdx);
+	
+	
 }

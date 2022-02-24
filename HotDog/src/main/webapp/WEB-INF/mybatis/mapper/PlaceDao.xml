@@ -24,7 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectByIdx"
 			resultType="com.bitcamp.hgs.place.domain.Places">
 		
-	select 
+	select
+	   p.place_idx, 
 	   p.title,
        p.old_address,
        p.new_address,
@@ -40,14 +41,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	
-<!-- 	<insert id="insertPlace" -->
-<!-- 			parameterType="com.bitcamp.op.member.domain.PlaceRegRequest" -->
-<!-- 			useGeneratedKeys="true" -->
-<!-- 			keyProperty="idx"> -->
+	<insert id="registPlace"
+			parameterType="com.bitcamp.hgs.place.domain.Places"
+			useGeneratedKeys="true"
+			keyProperty="place_idx">
 			
-<!-- 		INSERT INTO member (userid, password, username, photo) -->
-<!--  	 VALUES (#{userid},#{pw},#{username},#{fileName}) -->
+		INSERT INTO hgs.places (admin_idx,title, subject_category, affiliation, old_address, new_address, homepage, phone, openTime)
+ 	 VALUES (#{adminIdx},#{title},#{subjectCategory},#{affiliation},#{oldAddress},#{newAddress},#{homepage},#{phone})
 		
 	
-<!-- 	</insert> -->
+	</insert>
 	</mapper>
