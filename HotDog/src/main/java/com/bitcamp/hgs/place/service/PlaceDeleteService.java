@@ -5,21 +5,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bitcamp.hgs.place.dao.PlaceDao;
-import com.bitcamp.hgs.place.domain.Places;
 
 @Service
-public class PlaceRegService {
+public class PlaceDeleteService {
 
 	private PlaceDao dao;
 
 	@Autowired
 	private SqlSessionTemplate template;
 
-	public void registPlace(Places place) {
-
+	public void deletePlace(int placeIdx) {
+		
 		dao = template.getMapper(PlaceDao.class);
-
-		dao.registPlace(place);
-
+		
+		dao.deletePlace(placeIdx);
+		
 	}
+
 }

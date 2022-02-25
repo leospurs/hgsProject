@@ -17,7 +17,7 @@ public class PlaceListController {
 	@Autowired
 	private PlaceListService listService;
 
-	@RequestMapping("/place/list")
+	@RequestMapping("/place/list")	// http://localhost:8080/hgs/place/list 경로에 대한 처리 
 	public void getListPage(@RequestParam(value = "p", defaultValue = "1") int pageNum, Model model)
 			throws SQLException {
 

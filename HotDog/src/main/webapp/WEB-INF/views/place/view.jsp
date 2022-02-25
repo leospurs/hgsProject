@@ -30,7 +30,28 @@
     background-color: #FFBB00;
 }
 </style>
+<script>
+$(document).ready(function(){
+	
+	var operForm = $('#operForm')
+	
+	$("button[data-oper='update']").on("click", function(e) {
+		
+		operForm.attr("action", "update").submit();
+	});
+	
+	$("button[data-oper='list']").on("click", function(e) {
+		
+		operForm.find("placeIdx").remove();
+		operForm.attr("action", "list")
+		operForm.submit();
+	});
+	
+	
+	
+});
 
+</script>
 </head>
 <body>
 
@@ -179,7 +200,12 @@
 	</div>
 	 
 	
-	<a href="list">목록으로</a>
+	<button data-oper='update'>수정</button>
+	<button data-oper='list'>목록보기</button>
+	
+	<form id='operForm' action="/place/update" method="get">
+		<input type="hidden" id='placeIdx' name='placeIdx' value='<c:out value="${pageView.placeIdx}"/>'>
+	</form>
 	
 	<script>
 		function Rating(){};

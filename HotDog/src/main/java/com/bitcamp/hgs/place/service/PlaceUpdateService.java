@@ -8,18 +8,17 @@ import com.bitcamp.hgs.place.dao.PlaceDao;
 import com.bitcamp.hgs.place.domain.Places;
 
 @Service
-public class PlaceRegService {
+public class PlaceUpdateService {
 
 	private PlaceDao dao;
-
+	
 	@Autowired
 	private SqlSessionTemplate template;
-
-	public void registPlace(Places place) {
-
+	
+	public void updatePlace(Places place) {
+		
 		dao = template.getMapper(PlaceDao.class);
-
-		dao.registPlace(place);
-
+		
+		dao.updatePlace(place);
 	}
 }

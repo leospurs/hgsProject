@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import com.bitcamp.hgs.place.domain.ListPageView;
 import com.bitcamp.hgs.place.domain.Places;
 
 public interface PlaceDao {
@@ -23,7 +22,8 @@ public interface PlaceDao {
 	public void registPlace(Places place);
 	
 	// 추천장소 삭제하기
-	public int deletePlace(int PlaceIdx);
+	public void deletePlace(int placeIdx);
 	
-	
+	// 추천장소 수정하기
+	public void updatePlace(Places place);
 }
