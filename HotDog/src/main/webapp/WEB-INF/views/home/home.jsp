@@ -12,8 +12,11 @@
 
 <a href="/hgs/place/list">추천장소 목록보기</a>
 
+<br>
+
+<a href="/hgs/board/list">일반 게시물 목록보기</a>
 
 
-<P>  The time on the server is ${serverTime}. </P>
+
 </body>
 </html>
