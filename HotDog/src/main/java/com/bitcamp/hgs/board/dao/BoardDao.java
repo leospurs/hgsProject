@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
+import com.bitcamp.hgs.board.domain.BoardFiles;
 import com.bitcamp.hgs.board.domain.Boards;
+import com.bitcamp.hgs.board.domain.RegBoard;
 
 
 public interface BoardDao {
@@ -20,11 +22,14 @@ public interface BoardDao {
 		public Boards selectByIdx(int boardIdx);
 		
 		// 일반 게시물 등록하기
-		public void registBoard(Boards board);
+		public void registBoard(RegBoard regBoard);
 		
 		// 일반  게시물 삭제하기
 		public void deleteBoard(int boardIdx);
 		
 		// 일반 게시물 수정하기
 		public void updateBoard(Boards board);
+		
+		// 파일 첨부
+		public void insertFile(BoardFiles boardFiles);
 }

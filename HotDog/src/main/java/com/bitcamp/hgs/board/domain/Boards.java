@@ -12,11 +12,12 @@ public class Boards {
 	private Timestamp editDate;
 	private Timestamp deleteDate;
 	private boolean exist;
+	private String fileName;
 	
 	public Boards(){}
 	
 	public Boards(int boardIdx, int memberIdx, String title, String content, Timestamp createDate, Timestamp editDate,
-			Timestamp deleteDate, boolean exist) {
+			Timestamp deleteDate, boolean exist, String fileName) {
 		
 		this.boardIdx = boardIdx;
 		this.memberIdx = memberIdx;
@@ -26,6 +27,7 @@ public class Boards {
 		this.editDate = editDate;
 		this.deleteDate = deleteDate;
 		this.exist = exist;
+		this.fileName = fileName;
 	}
 
 	public int getBoardIdx() {
@@ -90,6 +92,16 @@ public class Boards {
 
 	public void setExist(boolean exist) {
 		this.exist = exist;
+	}
+	
+	
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	@Override
