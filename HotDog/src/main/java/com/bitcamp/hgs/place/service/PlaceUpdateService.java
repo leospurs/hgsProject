@@ -9,16 +9,18 @@ import com.bitcamp.hgs.place.domain.Places;
 
 @Service
 public class PlaceUpdateService {
-
+	
 	private PlaceDao dao;
+	
 	
 	@Autowired
 	private SqlSessionTemplate template;
-	
+
 	public void updatePlace(Places place) {
-		
+
 		dao = template.getMapper(PlaceDao.class);
-		
+
 		dao.updatePlace(place);
+
 	}
 }

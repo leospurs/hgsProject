@@ -5,13 +5,13 @@ import java.util.List;
 
 public class PlaceListView {
 
-	private List<Places> list;
+	private List<RegPlace> list;
 	private int totalCount;
 	private Pagination pagination;
 	private int pageNum;
 	
 	public PlaceListView(int pageNum, int numOfDisplayMessage, int numOfDisplayPageNum,
-			List<Places> list, int totalCount) {
+			List<RegPlace> list, int totalCount) {
 		this.pageNum = pageNum;
 		this.list = list;
 		this.totalCount = totalCount;
@@ -25,11 +25,11 @@ public class PlaceListView {
 		return totalpageCount;
 	}
 
-	public List<Places> getList() {
+	public List<RegPlace> getList() {
 		return list;
 	}
 
-	public void setList(List<Places> list) {
+	public void setList(List<RegPlace> list) {
 		this.list = list;
 	}
 

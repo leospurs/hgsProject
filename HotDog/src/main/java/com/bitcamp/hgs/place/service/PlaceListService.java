@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.hgs.place.dao.PlaceDao;
 import com.bitcamp.hgs.place.domain.PlaceListView;
-import com.bitcamp.hgs.place.domain.Places;
+import com.bitcamp.hgs.place.domain.RegPlace;
 
 @Service
 public class PlaceListService {
@@ -33,8 +33,8 @@ public class PlaceListService {
 
 		int index = (currentPage - 1) * COUNT_PER_PAGE;
 		// 화면에 노출할 메시지
-		List<Places> list = dao.selectList(index, COUNT_PER_PAGE);
-		System.out.println(list);
+		List<RegPlace> list = dao.selectList(index, COUNT_PER_PAGE);
+	
 
 		return new PlaceListView(currentPage, COUNT_PER_PAGE, COUNT_PER_PAGING_NUM, list, totalCount);
 

@@ -25,14 +25,14 @@
 			p:autoCommit="true"
 	/>
 
-	
+	<!-- JDBC 템플릿 등록 -->
 	<bean id="jdbcTemplate"
 		  class="org.springframework.jdbc.core.JdbcTemplate"
 		  p:dataSource-ref="dataSource"
 	/>
 	
 
-	
+	<!-- sqlSessionFactory : Mybatis + Spring 연동 -->
 	<bean
 		id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean"

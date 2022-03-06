@@ -7,10 +7,10 @@ public class ListPageView {
 	private int totalCount;		// 전체페이지
 	private int currentPage;	// 현재페이지
 	private int countPerPage;	
-	private List<Places> list;
+	private List<RegPlace> list;
 	private int pageTotalCount;
 	
-	public ListPageView(int totalCount, int currentPage, int countPerPage, List<Places> list) {
+	public ListPageView(int totalCount, int currentPage, int countPerPage, List<RegPlace> list) {
 		this.totalCount = totalCount;
 		this.currentPage = currentPage;
 		this.countPerPage = countPerPage;
@@ -47,11 +47,11 @@ public class ListPageView {
 		this.countPerPage = countPerPage;
 	}
 
-	public List<Places> getList() {
+	public List<RegPlace> getList() {
 		return list;
 	}
 
-	public void setList(List<Places> list) {
+	public void setList(List<RegPlace> list) {
 		this.list = list;
 	}
 

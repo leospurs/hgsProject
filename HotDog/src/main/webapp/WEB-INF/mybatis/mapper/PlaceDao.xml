@@ -13,11 +13,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   		p.place_idx,
 	   		p.title,
 	   		p.new_address,
-       		p.old_address,
        		p.subject_category,
        		pf.file_name
     	FROM places p left outer join place_files pf on (p.place_idx = pf.place_idx)
-        ORDER BY p.place_idx limit #{param1}, #{param2}
+        ORDER BY p.place_idx desc limit #{param1}, #{param2} 
+       
 	</select>
 	
 	<!-- 추천 장소 상세보기 -->
@@ -39,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 추천 장소 등록 -->
 	<insert id="registPlace"
-			parameterType="com.bitcamp.hgs.place.domain.Places"
+			parameterType="com.bitcamp.hgs.place.domain.RegPlace"
 			useGeneratedKeys="true"
 			keyProperty="placeIdx">
 			
@@ -53,14 +53,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	<!-- 추천 장소 수정 -->
-	<update id="updatePlace">
+	<update id="updatePlace"
+			parameterType="com.bitcamp.hgs.place.domain.Places">
 		UPDATE hgs.places SET
 		title = #{title},
 		old_address = #{oldAddress},
 		new_address = #{newAddress},
-		phone = #{phone},
+		phone = #{phone}, 
 		affiliation = #{affiliation}
 		where place_idx = #{placeIdx}
 	</update>
+	
+	<!-- 파일 등록  -->
+	<insert id="insertFile">
+	INSERT INTO hgs.place_files (place_idx, file_name, size)
+	VALUES (#{placeIdx},#{fileName},#{size})
+	</insert>
 	
 	</mapper>

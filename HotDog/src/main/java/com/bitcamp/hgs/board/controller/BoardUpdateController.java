@@ -16,7 +16,7 @@ public class BoardUpdateController {
 	
 	@GetMapping("board/update")
 	public void updateBoard() {
-	
+		
 	}
 	
 	@PostMapping("board/update")

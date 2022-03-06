@@ -214,9 +214,4 @@ public class Places {
 
 	
 
-
-	
-	
-	
-	
 }

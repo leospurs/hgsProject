@@ -3,7 +3,7 @@ package com.bitcamp.hgs;
 import org.apache.ibatis.annotations.Mapper;
 import org.junit.Test;
 
-import com.bitcamp.hgs.place.domain.Places;
+import com.bitcamp.hgs.place.domain.RegPlace;
 
 
 public class PlaceMapperTest {
@@ -11,7 +11,7 @@ public class PlaceMapperTest {
 	@Test
 	public void testInsert() {
 		
-		Places place = new Places();
+		RegPlace place = new RegPlace();
 		
 		place.setTitle("새로운 장소");
 		

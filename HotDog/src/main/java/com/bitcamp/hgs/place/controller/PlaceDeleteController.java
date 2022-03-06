@@ -9,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bitcamp.hgs.place.service.PlaceDeleteService;
 
 @Controller
-@RequestMapping("/place/*")
 public class PlaceDeleteController {
 
 	@Autowired
 	private PlaceDeleteService deleteService;
 	
-	@PostMapping("/delete")
+	@PostMapping("/place/delete")
 	public String deletePlace(@RequestParam("placeIdx") int placeIdx) {
-	
+		
+		
 		deleteService.deletePlace(placeIdx);
 		
 		return "redirect:/place/list";

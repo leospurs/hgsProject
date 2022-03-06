@@ -28,7 +28,7 @@ public class BoardRegService {
 
 		RegBoard regBoard = regBoardInfo.getBoard();
 		
-		
+		// return 값 멤버 idx
 		template.getMapper(BoardDao.class).registBoard(regBoard);
 
 		
@@ -55,9 +55,13 @@ public class BoardRegService {
 		}
 		
 		
-		
-		
 		template.getMapper(BoardDao.class).insertFile(boardFiles);
+		
+		// 해시태그 테이블에 해시태그랑 아디값 
+			// 만약 해시태그가 중복이 되면, 그 값은 저장 X
+			// 중복이 아니면 해시태그를 저장하고 
+			
+			// 저장한 해시태그의 idx값을 보드 해시태그 테이블에 member idx 값과 함께 저장 해야한다.
 		
 		System.out.println("성공");
 		

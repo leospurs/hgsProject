@@ -2,18 +2,21 @@ package com.bitcamp.hgs.place.controller;
 
 
 
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.bitcamp.hgs.place.domain.Places;
+import com.bitcamp.hgs.place.domain.RegPlaceInfo;
 import com.bitcamp.hgs.place.service.PlaceRegService;
 
 @Controller
-@RequestMapping("/place/*")
+@RequestMapping("/place/register")
 public class PlaceRegController {
 	
 	@Autowired
@@ -21,16 +24,15 @@ public class PlaceRegController {
 	
 	@GetMapping
 	public String regPlace() {
+		
 		return "place/register";
 	}
 	
-	@PostMapping("place/register")
-	public String regPlace(Places place, RedirectAttributes rttr) {
-		System.out.println(place);
+	@PostMapping
+	public String regPlace(RegPlaceInfo regPlaceInfo, HttpServletRequest request) throws IllegalStateException, IOException {
 		
-		regService.registPlace(place);
+		regService.registPlace(regPlaceInfo, request);
 		
-		rttr.addFlashAttribute("result", place.getPlaceIdx());
 		
 		return "redirect:/place/list";
 	}

@@ -22,7 +22,6 @@ public class BoardViewController {
 	public void getViewPage(@RequestParam("boardIdx") int boardIdx, Model model) {
 		
 		model.addAttribute("pageView", viewService.getPageView(boardIdx));
-		System.out.println(model);
 		model.addAttribute("replyList", replyService.getList(boardIdx));
 		
 		System.out.println(replyService.getList(boardIdx));

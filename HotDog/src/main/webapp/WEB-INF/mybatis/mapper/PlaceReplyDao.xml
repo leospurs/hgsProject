@@ -6,18 +6,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.bitcamp.hgs.place.dao.PlaceReplyDao">
 
-	<select id="selectList"
+	<select id="getList"
 			resultType="com.bitcamp.hgs.place.domain.PlaceReplys">
-	select member_idx,
+	SELECT place_reply_idx,
+		   place_idx,
+		   member_idx,
 		   star,
 		   content,
 		   file_name,
 		   create_date
-	from place_replys where place_idx=${idx}
+	FROM hgs.place_replys WHERE place_idx=${placeIdx}
 	</select>
 	
 	
-	<insert id="insertReply"
+	<insert id="registReply"
 			parameterType="com.bitcamp.hgs.place.domain.PlaceReplys"
 			useGeneratedKeys="true"
 			keyProperty="placeReplyIdx"
@@ -30,11 +32,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	<delete id="deleteByIdx">
-		delete from reply where place_reply_idx=#{idx}
+	<delete id="deleteReply">
+		DELETE FROM hgs.place_replys WHERE place_reply_idx=#{placeReplyIdx}
 	</delete>
 	
-	
+	<update id="updateReply">
+		UPDATE place_replys SET content=#{content}, editdate = sysdate WHERE place_reply_idx = #{placeReplyIdx}
+	</update>
 	
 	
 </mapper>
