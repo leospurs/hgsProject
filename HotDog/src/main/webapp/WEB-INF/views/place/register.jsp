@@ -6,15 +6,31 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>	
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+<%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
-	<link
+<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
+
+
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
+
+<!-- 넓이 높이 조절 -->
+<style>
+.ck.ck-editor {
+	max-width: 500px;
+}
+
+.ck-editor__editable {
+	min-height: 300px;
+}
+</style>
+
 
 <style>
 #form_container {
@@ -52,13 +68,24 @@ div.col-12 {
 		<!-- 네비게이션 시작 -->
 		<!-- Top nav Bar -->
 		<%@ include file="/WEB-INF/views/frame/nav.jsp"%>
-	
+
+
+		<div id="classic">
+			<p>This is some sample content.</p>
+		</div>
+		<script>
+        ClassicEditor
+            .create( document.querySelector( '#classic' ))
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 		<!-- 등록 영역 -->
 		<h3>장소 등록하기</h3>
 		<div id="form_container">
 			<form role="form" method="post" enctype="multipart/form-data">
-	
-	
+
+
 				<div class="mb-3">
 					<label for="title" class="form-label">장소이름</label> <input
 						type="text" name="title" class="form-control" id="title"
@@ -110,19 +137,19 @@ div.col-12 {
 						type="text" name="phone" class="form-control" id="phone"
 						placeholder="전화번호" required>
 				</div>
-	
+
 				<div class="mb-3">
 					<label for="photo" class="form-label">첨부파일</label> <input
 						type="file" name="photo" class="form-control" id="photo">
 				</div>
-	
+
 				<div class="col-12">
 					<button type="submit" class="btn btn-warning">등록</button>
 					<a class="btn btn-outline-warning" href="list" role="button">목록으로</a>
 				</div>
-	
-	
-	
+
+
+
 			</form>
 		</div>
 	</div>

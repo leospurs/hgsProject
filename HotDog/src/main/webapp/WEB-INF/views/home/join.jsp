@@ -235,6 +235,9 @@ body {
 
 	// submit ajax
 	joinBtn.onclick = function(){
+		
+		console.log("성공!");
+		
 		const formData = new FormData();
 		if(typeof $('#email').val() != "undefined" || $('#email').val()  != null ){
 			formData.append('email', $('#email').val());

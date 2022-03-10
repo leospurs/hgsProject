@@ -18,11 +18,9 @@ public class BoardReplyService {
 	private SqlSessionTemplate template;
 
 	// 후기 목록보기
-	public List<BoardReplys> getList(int BoardIdx) {
-		
-		
-		
-		return template.getMapper(BoardReplyDao.class).getList(BoardIdx);
+	public List<BoardReplys> getList(int boardIdx) {
+
+		return template.getMapper(BoardReplyDao.class).getList(boardIdx);
 	}
 
 	// 댓글 등록
@@ -41,10 +39,10 @@ public class BoardReplyService {
 	}
 
 	// 후기 수정
-	//public int updateReply(PlaceReplys reply) {
+	// public int updateReply(PlaceReplys reply) {
 
-		//dao = template.getMapper(PlaceReplyDao.class);
+	// dao = template.getMapper(PlaceReplyDao.class);
 
-		//return dao.updateReply(reply);
-	//}
+	// return dao.updateReply(reply);
+	// }
 }

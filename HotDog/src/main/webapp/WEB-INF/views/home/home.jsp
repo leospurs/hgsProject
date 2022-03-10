@@ -157,18 +157,18 @@
 		}
 	})
 	
-	// 서치 검색 결과 시, 일어날 함수
-// 	function searchAfter(list){
-// 		const parkList = list.homePark;
-// 		const cafeList = list.homeCafe;
-// 		const hospitalList = list.homeHospital;
-// 		const boardList = list.homeBoard;
+	서치 검색 결과 시, 일어날 함수
+	function searchAfter(list){
+		const parkList = list.homePark;
+		const cafeList = list.homeCafe;
+		const hospitalList = list.homeHospital;
+		const boardList = list.homeBoard;
 		
-// 		parkList.forEach(function(item,index,arr2){
-// 			$(".board-content").append()
-// 		}
+		parkList.forEach(function(item,index,arr2){
+			$(".board-content").append()
+		}
 
-// 	}
+	}
 </script>
 <script>
 
@@ -313,7 +313,7 @@
 	
 </script>
 <script>
-   /*
+   
 	var homeScrapList = [];
 	//현재 위치 기반으로 주변 정보(카페,병원 등) 데이터를 받아오기
 	if (navigator.geolocation) {
@@ -364,7 +364,7 @@
 			
 		}
 	}
-	*/
+	
 	
 	// 마커를 표시할 위치와 title 객체 배열입니다 
 	// 여기다가 유저가 좋아하는 것들을 받아오기

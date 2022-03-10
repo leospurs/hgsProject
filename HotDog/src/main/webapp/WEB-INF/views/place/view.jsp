@@ -46,7 +46,7 @@ div#content {
 					</td>
 	
 					<tr>
-						<td>이름</td>
+						<td>${member.name}</td>
 						<td>${pageView.title}</td>
 					</tr>
 	
