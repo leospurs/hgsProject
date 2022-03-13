@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bitcamp.hgs.board.domain.BoardLikes;
 import com.bitcamp.hgs.board.service.BoardLikeService;
 import com.bitcamp.hgs.board.service.BoardReplyService;
 import com.bitcamp.hgs.board.service.BoardViewService;
@@ -25,21 +26,30 @@ public class BoardViewController {
 	@Autowired
 	private BoardLikeService likeService;
 	
+	
+	
 	@GetMapping("/board/view")
 	public void getViewPage(@RequestParam("boardIdx") int boardIdx, HttpSession session, Model model) {
 		
 		Logger logger = (Logger)session.getAttribute("logger");
 		
-		System.out.println("logger: " + logger);
-		
+		System.out.println(logger);
 		// 게시물 상세보기
 		model.addAttribute("pageView", viewService.getPageView(boardIdx));
+		
+		System.out.println(viewService.getPageView(boardIdx));
 		
 		// 댓글 전체 리스트
 		model.addAttribute("replyList", replyService.getList(boardIdx));
 		
 		// 좋아요 기능 부분
-		model.addAttribute("boardLike", likeService.getList(boardIdx));
+		BoardLikes boardLike = new BoardLikes();
+		
+		boardLike = likeService.findLike(boardIdx);
+		
+		System.out.println("boardLike: " + boardLike);
+		
+		model.addAttribute("boardLike", boardLike);
 		
 		
 	}

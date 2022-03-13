@@ -5,7 +5,8 @@ import java.sql.Timestamp;
 public class Boards {
 	
 	private int boardIdx;
-	private int memberIdx = 1;
+	private int memberIdx;
+	private String name;
 	private String title;
 	private String content;
 	private Timestamp createDate;
@@ -16,11 +17,12 @@ public class Boards {
 	
 	public Boards(){}
 	
-	public Boards(int boardIdx, int memberIdx, String title, String content, Timestamp createDate, Timestamp editDate,
+	public Boards(int boardIdx, int memberIdx, String name, String title, String content, Timestamp createDate, Timestamp editDate,
 			Timestamp deleteDate, boolean exist, String fileName) {
 		
 		this.boardIdx = boardIdx;
 		this.memberIdx = memberIdx;
+		this.name = name;
 		this.title = title;
 		this.content = content;
 		this.createDate = createDate;
@@ -44,6 +46,16 @@ public class Boards {
 
 	public void setMemberIdx(int memberIdx) {
 		this.memberIdx = memberIdx;
+	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getTitle() {

@@ -21,12 +21,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectByIdx"
 			resultType="com.bitcamp.hgs.board.domain.Boards">
 		SELECT
-	   		b.board_idx, 
+	   		b.board_idx,
+	   		m.name,
+	   		b.create_date,  
 	   		b.title,
        		b.content,
        		bf.file_name
-       FROM boards b left outer join board_files bf on (b.board_idx = bf.board_idx)
-	   WHERE b.board_idx=#{idx} 
+       FROM boards b LEFT OUTER JOIN board_files bf ON (b.board_idx = bf.board_idx) 
+       				 LEFT OUTER JOIN members m ON (b.member_idx = m.member_idx)
+	   WHERE b.board_idx=#{boardIdx} 
 	</select>
 	
 	<!-- 일반 게시물 등록 -->
@@ -41,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 일반 게시물 삭제 -->
 	<delete id="deleteBoard">
-		DELETE FROM hgs.boards where board_idx=#{boardIdx}
+		DELETE FROM hgs.boards WHERE board_idx=#{boardIdx}
 	</delete>
 	
 	<!-- 일반 게시물 수정 -->
@@ -57,5 +60,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	INSERT INTO hgs.board_files (board_idx, file_name, size)
 	VALUES (#{boardIdx},#{fileName},#{size})
 	</insert>
+	
+	<!-- 좋아요 여부 -->
+	<select id="findLike"
+		resultType="com.bitcamp.hgs.board.domain.BoardLikes">
+		SELECT * FROM hgs.board_likes WHERE board_Idx=#{boardIdx} AND member_Idx=#{memberIdx}
+	</select>
 	
 	</mapper>

@@ -18,16 +18,6 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="http://localhost:8080/hgs/css/list.css" />
 
-<style>
-.placeList-container {
-	background-color: #D5D5D5;
-
-}
-
-
-
-</style>
-
 
 
 <title>게시물 리스트</title>
@@ -38,7 +28,7 @@
 	
 	<div class="placeList-container" style="background-color= #D5D5D5"> 
 		
-		<div id="content">
+		<div id="content-header">
 			<div class="text-info">
 				<h3 class="place-text-h3">커뮤니티</h3>
 				<nav
@@ -56,7 +46,7 @@
 		</div>
 
 		<!-- 게시물 리스트 영역 -->
-		<div class="place-list">
+		<div class="content-list">
 			<c:if test="${not empty listView.list}">
 				<c:forEach items="${listView.list}" var="boards">
 					

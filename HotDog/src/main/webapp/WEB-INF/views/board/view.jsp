@@ -133,7 +133,11 @@ div.reply>div.close>div {
 				<table class="table">
 					<tr>
 						<td>작성자</td>
-						<td>${logger.memberIdx}</td>
+						<td>${pageView.name}</td>
+					</tr>
+					<tr>
+						<td>작성일</td>
+						<td>${pageView.createDate}</td>
 					</tr>
 					<tr>
 						<td>제목</td>
@@ -159,7 +163,8 @@ div.reply>div.close>div {
 				<!-- 좋아요 하트 영역 -->
 				<div>
 					<a class="text-dark heart" style="text-decoration-line: none;">
-						<img id="heart" src="http://localhost:8080/hgs/images/heart.svg"> 좋아요
+						<img id="heart" src="http://localhost:8080/hgs/images/heart.svg">
+						좋아요
 					</a>
 				</div>
 
@@ -169,59 +174,65 @@ div.reply>div.close>div {
 			</div>
 
 			<div id="replyList"
-				class="col-md-8 my-3 p-3 bg-white rounded shadow-sm">
-				<h3 class="border-bottom border-gray pb-2 mb-0">댓글</h3>
+				class="col-md-12 my-3 p-3 bg-white rounded shadow-sm">
+				<h4 class="border-bottom border-gray pb-2 mb-0">댓글</h4>
+				<!-- 등록된 댓글이 없을 시 -->
 				<c:if test="${empty replyList}">
 					<tr>
-						<td><h3>등록된 댓글이 없습니다.</h3></td>
+						<td><h5>등록된 댓글이 없습니다.</h5></td>
 					</tr>
 				</c:if>
+				<!-- 등록된 댓글이 있을 시 -->
 				<c:if test="${not empty replyList}">
 					<c:forEach items="${replyList}" var="reply">
 
 						<div id="reply${reply.boardReplyIdx}"
 							class="media text-muted pt-3">
 
-							<p>작성자 아이디</p>
-							<p>${reply.content}</p>
+							<p
+								class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+								<strong class="d-block text-gray-dark">@${reply.name}</strong>
+								${reply.content}
+							</p>
 
 							<div onclick="deleteReply(${reply.boardReplyIdx})"
-								class="badge  badge-info" style="color: black;">X</div>
+								class="badge  badge-info" style="color: red;">X</div>
 						</div>
 					</c:forEach>
 				</c:if>
 
 			</div>
 
-			<div class="col-md-8 my-3 p-3 bg-white rounded shadow-sm">
-				<h5 class="border-bottom border-gray pb-2 mb-0">작성자 아이디</h5>
+			<!-- 댓글 작성 폼 -->
+			<div class="col-md-12 my-3 p-3 bg-white rounded shadow-sm">
+				<h5 class="border-bottom border-gray pb-2 mb-0">${logger.name}</h5>
 
 				<form id="replyWriteForm" class=" text-right" method="POST">
 
 					<textarea name="content" id="content" rows="5" cols="30"
 						class="form-control p-3" required></textarea>
 
-					<!-- <input type="hidden" name="memberIdx" value="${user.member.idx}"> -->
+					<input type="hidden" name="memberIdx" value="${logger.memberIdx}">
 					<input type="hidden" name="boardIdx" value="${pageView.boardIdx}">
-
-					<input type="submit" value="작성" class="btn btn-success">
+					<br /> <input type="submit" value="댓글작성" class="btn btn-success">
 				</form>
 
 			</div>
 
+			<div class="my-3 p-3 bg-white rounded shadow-sm mb-5">
+				<a href="list" class="btn btn-success">목록</a>
+				<c:if test="${logger.name eq pageView.name}">
+					<a href="update?idx=${pageView.boardIdx}" class="btn btn-info">수정</a>
+					<a href="javascript:deleteBoard(${pageView.boardIdx})"
+						class="btn btn-danger">삭제</a>
+				</c:if>
 
-			<button class="btn btn-warning" data-oper='update'>수정</button>
-			<button class="btn btn-outline-warning" data-oper='list'>목록보기</button>
-			<%-- 			<c:if test="${loginInfo.idx eq pageView.memberidx}"> --%>
-			<%-- 				<a href="edit?idx=${pageView.idx}" class="btn btn-info">수정</a> --%>
-			<%-- 				<a href="javascript:deleteMessage(${pageView.idx})" --%>
-			<!-- 					class="btn btn-danger">삭제</a> -->
-			<%-- 			</c:if> --%>
+			</div>
 
-			<form id='operForm' action="/board/update" method="get">
-				<input type="hidden" id='boardIdx' name='boardIdx'
-					value='<c:out value="${pageView.boardIdx}"/>'>
-			</form>
+			<!-- 			<form id='operForm' action="/board/update" method="get"> -->
+			<!-- 				<input type="hidden" id='boardIdx' name='boardIdx' -->
+			<%-- 					value='<c:out value="${pageView.boardIdx}"/>'> --%>
+			<!-- 			</form> -->
 
 
 		</main>
@@ -231,68 +242,61 @@ div.reply>div.close>div {
 
 	<!-- 수정 버튼 동작 -->
 	<script>
-	$(document).ready(function() {
+	$(document).ready(function() { var operForm = $('#operForm')
 
-		var operForm = $('#operForm')
+	$("button[data-oper='update']").on("click", function(e) {
 
-		$("button[data-oper='update']").on("click", function(e) {
+	operForm.attr("action", "update").submit(); });
 
-			operForm.attr("action", "update").submit();
-		});
-
-		$("button[data-oper='list']").on("click", function(e) {
-
-			operForm.find("boardIdx").remove();
-			operForm.attr("action", "list");
-			operForm.submit();
-		});
-
-	});
+	$("button[data-oper='list']").on("click", function(e) {
+	operForm.find("boardIdx").remove(); operForm.attr("action", "list");
+	operForm.submit(); }); });
 	</script>
-	
+
 	<!-- 좋아요 버튼 클릭 시 동작 -->
-	<script>
-    $(document).ready(function () {
-				
-	// 좋아요가 있는지 확인한 값을 heartval에 저장
-        // var heartval = ${heart.heart}
-        // heartval이 1이면 좋아요가 이미 되있는것이므로 heart-fill.svg를 출력하는 코드
-        
-        console.log("${logger.memberIdx}");
-        
-        var logmember = ${logger.memberIdx};
-        var blmember = ${boardLike.memberIdx};
-        
-        if(logmember === blmember) {
-            
-            $("#heart").prop("src", "http://localhost:8080/hgs/images/heart-fill.svg");
-            // $(".heart").prop('name',heartval)
-        }
-        else {
-            
-            $("#heart").prop("src", "http://localhost:8080/hgs/images/heart.svg");
-            // $(".heart").prop('name',heartval)
-        }
+	<!-- <!-- 	<script> -->
+	-->
+	<!-- //     $(document).ready(function () { -->
 
-	// 좋아요 버튼을 클릭 시 실행되는 코드
-        $(".heart").on("click", function () {
-            var that = $(".heart");
-	    $.ajax({
-	    	url :'/board/like',
-	        type :'POST',
-	        data : {'boardIdx':${pageView.boardIdx}, 'memberIdx':${logger.memberIdx}},
-	    	success : function(data){
-	    		that.prop('name',data);
-	        	if(data==1) {
-	            	     $('#heart').prop("src","http://localhost:8080/hgs/images/heart-fill.svg");
-	        	} else {
-                    	     $('#heart').prop("src","http://localhost:8080/hgs/images/heart.svg");
-	        	}
-             	}
-	    });
-        });
-    });
-	</script>
+	<!-- // 	// 좋아요가 있는지 확인한 값을 heartval에 저장 -->
+	<%-- //         // var heartval = ${heart.heart} --%>
+	<!-- //         // heartval이 1이면 좋아요가 이미 되있는것이므로 heart-fill.svg를 출력하는 코드 -->
+
+
+	<%-- //         var hbidx = "${heart.boardIdx}"; --%>
+	<%-- //         var hmidx = "${heart.memberIdx}"; --%>
+
+	<!-- //         if(hbidx == null && hmidx == null) { -->
+
+	<!-- //             $("#heart").prop("src", "http://localhost:8080/hgs/images/heart-fill.svg"); -->
+	<!-- //             // $(".heart").prop('name',heartval) -->
+	<!-- //         } -->
+	<!-- //         else { -->
+
+	<!-- //             $("#heart").prop("src", "http://localhost:8080/hgs/images/heart.svg"); -->
+	<!-- //             // $(".heart").prop('name',heartval) -->
+	<!-- //         } -->
+
+	<!-- // 	// 좋아요 버튼을 클릭 시 실행되는 코드 -->
+	<!-- //         $(".heart").on("click", function () { -->
+	<!-- //             var that = $(".heart"); -->
+	<!-- // 	    $.ajax({ -->
+	<!-- // 	    	url :'/board/like', -->
+	<!-- // 	        type :'POST', -->
+	<!-- // 	        data : {'boardIdx':${pageView.boardIdx}, 'memberIdx':${logger.memberIdx}}, -->
+	<!-- // 	    	success : function(data){ -->
+	<!-- // 	    		that.prop('name',data); -->
+	<!-- // 	        	if(data==1) { -->
+	<!-- // 	            	     $('#heart').prop("src","http://localhost:8080/hgs/images/heart-fill.svg"); -->
+	<!-- // 	        	} else { -->
+	<!-- //                     	     $('#heart').prop("src","http://localhost:8080/hgs/images/heart.svg"); -->
+	<!-- // 	        	} -->
+	<!-- //              	} -->
+	<!-- // 	    }); -->
+	<!-- //         }); -->
+	<!-- //     }); -->
+	<!-- <!-- 	</script> -->
+	-->
 
 
 
@@ -310,7 +314,7 @@ div.reply>div.close>div {
 										var html = '';
 										html += '<div id="reply'+data+'" class="media text-muted pt-3">';
 										html += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">';
-										html += '<strong class="d-block text-gray-dark">@작성자 아이디</strong>';
+										html += '<strong class="d-block text-gray-dark">@${logger.name}</strong>';
 										html += $('#message').val();
 										html += '</p>';
 										html += '<div onclick="deleteReply('+data+')" class="badge  badge-info" style="color: black;">x</div>';
@@ -335,8 +339,6 @@ div.reply>div.close>div {
 			
 			if(confirm('댓글을 삭제하시겠습니까?')){
 				
-				
-				
 				$.ajax({                       
 					url : '${pageContext.request.contextPath}/board/reply/'+boardReplyIdx,
 					type : 'DELETE',
@@ -352,7 +354,13 @@ div.reply>div.close>div {
 			}
 		}
 		
-	
+		function deleteBoard {
+			
+			
+			if(confirm('삭제하시겠습니까?')) {
+				location.href = 'board/delete;
+			}
+		}
 		
 	</script>
 

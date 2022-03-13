@@ -6,18 +6,20 @@ public class BoardReplys {
 	
 	private int boardReplyIdx;	
 	private int boardIdx;		
-	private int memberIdx = 1;		
+	private int memberIdx;
+	private String name;
 	private String content;		
 	private Timestamp createDate;	
 	private Timestamp editDate;	
 	
 	public BoardReplys() {}
 
-	public BoardReplys(int boardReplyIdx, int boardIdx, int memberIdx, String content, Timestamp createDate,
+	public BoardReplys(int boardReplyIdx, int boardIdx, int memberIdx, String name, String content, Timestamp createDate,
 			Timestamp editDate) {
 		this.boardReplyIdx = boardReplyIdx;
 		this.boardIdx = boardIdx;
 		this.memberIdx = memberIdx;
+		this.name = name;
 		this.content = content;
 		this.createDate = createDate;
 		this.editDate = editDate;
@@ -45,6 +47,16 @@ public class BoardReplys {
 
 	public void setMemberIdx(int memberIdx) {
 		this.memberIdx = memberIdx;
+	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getContent() {

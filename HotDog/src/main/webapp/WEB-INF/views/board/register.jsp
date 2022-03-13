@@ -58,16 +58,16 @@
 		<h3>게시물 등록하기</h3>
 		<div id="form_container">
 			<form role="form" method="post" enctype="multipart/form-data">
-	
+				
+				
 				<div class="mb-3">
-					<label for="title" class="form-label">제목</label> <input type="text"
-						name="title" class="form-control" id="" memberIdx""
-					required>
+					<label for="title" class="form-label">제목</label> 
+					<input type="text" name="title" class="form-control" id="title" required>
 				</div>
 	
 				<div class="mb-3">
 					<label for="content" class="form-label">내용</label>
-					<textarea class="form-control" id="content" name="content" rows="3"></textarea>
+					<textarea class="form-control" id="content" name="content" rows="5"></textarea>
 				</div>
 	
 				<div class="mb-3">

@@ -1,10 +1,12 @@
 package com.bitcamp.hgs.board.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Select;
 
 import com.bitcamp.hgs.board.domain.BoardFiles;
+import com.bitcamp.hgs.board.domain.BoardLikes;
 import com.bitcamp.hgs.board.domain.Boards;
 import com.bitcamp.hgs.board.domain.RegBoard;
 
@@ -32,4 +34,10 @@ public interface BoardDao {
 		
 		// 파일 첨부
 		public void insertFile(BoardFiles boardFiles);
+		
+		// 해당 게시물의 좋아요 전체수 
+		public int selectTotalLikeCount(int boardIdx);
+		
+		// 해당 회원의 좋아요 여부 판단 
+		public BoardLikes findLike(Map<String, Integer> number);
 }

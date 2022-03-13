@@ -8,12 +8,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="getList"
 			resultType="com.bitcamp.hgs.board.domain.BoardReplys">
-	SELECT board_reply_idx,
-		   board_idx,
-		   member_idx,
-		   content,
-		   create_date
-	FROM hgs.board_replys WHERE board_idx=${boardIdx}
+	SELECT br.board_reply_idx,
+		   br.board_idx,
+		   br.member_idx,
+		   m.name,
+		   br.content,
+		   br.create_date
+	FROM hgs.board_replys br LEFT OUTER JOIN members m ON(br.member_idx = m.member_idx)
+	WHERE board_idx=${boardIdx}
 	</select>
 	
 	
