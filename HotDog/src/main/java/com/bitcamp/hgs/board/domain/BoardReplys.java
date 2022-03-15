@@ -4,13 +4,13 @@ import java.sql.Timestamp;
 
 public class BoardReplys {
 	
-	private int boardReplyIdx;	
-	private int boardIdx;		
-	private int memberIdx;
-	private String name;
-	private String content;		
-	private Timestamp createDate;	
-	private Timestamp editDate;	
+	private int boardReplyIdx;		// 게시물 댓글 번호
+	private int boardIdx;			// 게시물 번호
+	private int memberIdx;			// 회원 번호
+	private String name;			// 회원 이름
+	private String content;			// 게시물 댓글 내용
+	private Timestamp createDate;	// 게시물 댓글 등록 날짜
+	private Timestamp editDate;		// 게시물 댓글 수정 날짜
 	
 	public BoardReplys() {}
 

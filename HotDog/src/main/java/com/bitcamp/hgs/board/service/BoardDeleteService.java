@@ -13,13 +13,22 @@ public class BoardDeleteService {
 
 	@Autowired
 	private SqlSessionTemplate template;
-
+	
+	// 게시물 삭제 
 	public void deleteBoard(int boardIdx) {
-		
+
 		dao = template.getMapper(BoardDao.class);
-		
+
 		dao.deleteBoard(boardIdx);
-		
+
+	}
+	
+	// 게시물 첨부 파일 삭제
+	public void deleteFile(int boardIdx) {
+
+		dao = template.getMapper(BoardDao.class);
+
+		dao.deleteFile(boardIdx);
 	}
 
 }

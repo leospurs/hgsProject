@@ -19,38 +19,33 @@ public class BoardViewController {
 
 	@Autowired
 	private BoardViewService viewService;
-	
+
 	@Autowired
 	private BoardReplyService replyService;
-	
+
 	@Autowired
 	private BoardLikeService likeService;
-	
-	
-	
-	@GetMapping("/board/view")
+
+	@GetMapping({ "/board/view", "/board/update" })
 	public void getViewPage(@RequestParam("boardIdx") int boardIdx, HttpSession session, Model model) {
-		
-		Logger logger = (Logger)session.getAttribute("logger");
-		
-		System.out.println(logger);
-		// 게시물 상세보기
+
+		// 좋아요 여부 판단을 위한 logger 객체
+		Logger logger = (Logger) session.getAttribute("logger");
+
+		// 게시물 상세보기 정보를 뷰에 전달
 		model.addAttribute("pageView", viewService.getPageView(boardIdx));
-		
-		System.out.println(viewService.getPageView(boardIdx));
-		
-		// 댓글 전체 리스트
+
+		// 댓글 전체 리스트를 뷰에 전달
 		model.addAttribute("replyList", replyService.getList(boardIdx));
-		
+
 		// 좋아요 기능 부분
 		BoardLikes boardLike = new BoardLikes();
-		
+
 		boardLike = likeService.findLike(boardIdx);
-		
+
 		System.out.println("boardLike: " + boardLike);
-		
+
 		model.addAttribute("boardLike", boardLike);
-		
-		
+
 	}
 }

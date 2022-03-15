@@ -4,16 +4,16 @@ import java.sql.Timestamp;
 
 public class Boards {
 	
-	private int boardIdx;
-	private int memberIdx;
-	private String name;
-	private String title;
-	private String content;
-	private Timestamp createDate;
-	private Timestamp editDate;
-	private Timestamp deleteDate;
-	private boolean exist;
-	private String fileName;
+	private int boardIdx;			// 게시물 번호
+	private int memberIdx;			// 일반 회원 번호
+	private String name;			// 일반 회원 이름
+	private String title;			// 게시물 제목
+	private String content;			// 게시물 내용
+	private Timestamp createDate;	// 게시물 등록 날짜
+	private Timestamp editDate;		// 게시물 수정 날짜
+	private Timestamp deleteDate;	// 게시물 삭제 날짜
+	private boolean exist;			// 게시물 존재 여부
+	private String fileName;		// 게시물 첨부 파일 이름
 	
 	public Boards(){}
 	

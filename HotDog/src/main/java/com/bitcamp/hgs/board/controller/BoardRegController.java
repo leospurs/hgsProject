@@ -1,7 +1,5 @@
 package com.bitcamp.hgs.board.controller;
 
-
-
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,23 +16,22 @@ import com.bitcamp.hgs.board.service.BoardRegService;
 @Controller
 @RequestMapping("/board/register")
 public class BoardRegController {
-	
+
 	@Autowired
 	private BoardRegService regService;
-	
+
 	@GetMapping
 	public String regBoard() {
-		
+
 		return "board/register";
 	}
-	
+
 	@PostMapping
-	public String regBoard(RegBoardInfo regBoardInfo, HttpServletRequest request) throws IllegalStateException, IOException {
-		
-		
+	public String regBoard(RegBoardInfo regBoardInfo, HttpServletRequest request)
+			throws IllegalStateException, IOException {
+
 		regService.registBoard(regBoardInfo, request);
-		
-		
+
 		return "redirect:/board/list";
 	}
 }

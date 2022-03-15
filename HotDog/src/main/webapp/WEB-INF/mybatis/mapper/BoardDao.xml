@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateBoard">
 		UPDATE hgs.boards SET
 		title = #{title},
-		contact = #{content},
+		content = #{content}
 		where board_idx = #{boardIdx}
 	</update>
 	
@@ -60,6 +60,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	INSERT INTO hgs.board_files (board_idx, file_name, size)
 	VALUES (#{boardIdx},#{fileName},#{size})
 	</insert>
+	
+	<!-- 파일 삭제 -->
+	<delete id="deleteFile">
+	DELETE FROM hgs.board_files 
+	WHERE board_idx = #{boardIdx}
+	</delete>
 	
 	<!-- 좋아요 여부 -->
 	<select id="findLike"

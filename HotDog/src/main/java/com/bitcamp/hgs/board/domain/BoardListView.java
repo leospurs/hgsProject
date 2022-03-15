@@ -7,10 +7,10 @@ import com.bitcamp.hgs.place.domain.Pagination;
 
 public class BoardListView {
 
-	private List<Boards> list;
-	private int totalCount;
-	private Pagination pagination;
-	private int pageNum;
+	private List<Boards> list;		// 게시물 리스트 
+	private int totalCount;			// 게시물 전체 개수
+	private Pagination pagination;	// 페이징 처리 객체
+	private int pageNum;			// 페이지 번호
 	
 	public BoardListView(int pageNum, int numOfDisplayMessage, int numOfDisplayPageNum,
 			List<Boards> list, int totalCount) {

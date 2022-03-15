@@ -3,9 +3,9 @@ package com.bitcamp.hgs.board.domain;
 public class BoardFiles {
 	
 	
-	private int boardIdx;	// 추천 장소 idx
-	private String fileName;	// 사진 파일 이름
-	private int size;	// 사진 파일 사이즈
+	private int boardIdx;		// 게시물 번호
+	private String fileName;	// 게시물 첨부파일 이름
+	private int size;			// 게시물 첨부파일 사이즈
 	
 	public BoardFiles() {}
 

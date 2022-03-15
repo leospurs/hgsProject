@@ -11,14 +11,14 @@ import com.bitcamp.hgs.board.domain.Boards;
 public class BoardUpdateService {
 
 	private BoardDao dao;
-	
+
 	@Autowired
 	private SqlSessionTemplate template;
-	
+
 	public void updateBoard(Boards board) {
-		
+
 		dao = template.getMapper(BoardDao.class);
-		
+
 		dao.updateBoard(board);
 	}
 }

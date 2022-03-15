@@ -222,36 +222,16 @@ div.reply>div.close>div {
 			<div class="my-3 p-3 bg-white rounded shadow-sm mb-5">
 				<a href="list" class="btn btn-success">목록</a>
 				<c:if test="${logger.name eq pageView.name}">
-					<a href="update?idx=${pageView.boardIdx}" class="btn btn-info">수정</a>
-					<a href="javascript:deleteBoard(${pageView.boardIdx})"
-						class="btn btn-danger">삭제</a>
+					<a href="update?boardIdx=${pageView.boardIdx}" class="btn btn-info">수정</a>
+					<a href="delete?boardIdx=${pageView.boardIdx}" class="btn btn-danger">삭제</a>
 				</c:if>
 
 			</div>
-
-			<!-- 			<form id='operForm' action="/board/update" method="get"> -->
-			<!-- 				<input type="hidden" id='boardIdx' name='boardIdx' -->
-			<%-- 					value='<c:out value="${pageView.boardIdx}"/>'> --%>
-			<!-- 			</form> -->
-
 
 		</main>
 
 
 	</div>
-
-	<!-- 수정 버튼 동작 -->
-	<script>
-	$(document).ready(function() { var operForm = $('#operForm')
-
-	$("button[data-oper='update']").on("click", function(e) {
-
-	operForm.attr("action", "update").submit(); });
-
-	$("button[data-oper='list']").on("click", function(e) {
-	operForm.find("boardIdx").remove(); operForm.attr("action", "list");
-	operForm.submit(); }); });
-	</script>
 
 	<!-- 좋아요 버튼 클릭 시 동작 -->
 	<!-- <!-- 	<script> -->
@@ -296,7 +276,7 @@ div.reply>div.close>div {
 	<!-- //         }); -->
 	<!-- //     }); -->
 	<!-- <!-- 	</script> -->
-	-->
+
 
 
 
@@ -353,18 +333,8 @@ div.reply>div.close>div {
 				});
 			}
 		}
-		
-		function deleteBoard {
-			
-			
-			if(confirm('삭제하시겠습니까?')) {
-				location.href = 'board/delete;
-			}
-		}
-		
 	</script>
-
-
+	
 
 
 

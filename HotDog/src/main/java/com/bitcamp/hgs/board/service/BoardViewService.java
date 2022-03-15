@@ -10,7 +10,6 @@ import com.bitcamp.hgs.board.domain.Boards;
 @Service
 public class BoardViewService {
 
-	private BoardDao dao;
 
 	@Autowired
 	private SqlSessionTemplate template;
@@ -19,6 +18,5 @@ public class BoardViewService {
 
 		return template.getMapper(BoardDao.class).selectByIdx(boardIdx);
 	}
-	
 
 }

@@ -3,12 +3,12 @@ package com.bitcamp.hgs.board.domain;
 import org.springframework.web.multipart.MultipartFile;
 
 public class RegBoardInfo {
-	
+
 	private int memberIdx = 1;
 	private String title;
 	private String content;
 	private MultipartFile photo;
-	
+
 	public RegBoardInfo() {}
 
 	public RegBoardInfo(int memberIdx, String title, String content, MultipartFile photo) {
@@ -56,11 +56,10 @@ public class RegBoardInfo {
 		return "RegBoardInfo [memberIdx=" + memberIdx + ", title=" + title + ", content=" + content + ", photo=" + photo
 				+ "]";
 	}
-	
+
 	public RegBoard getBoard() {
-		
+
 		return new RegBoard(title, content);
 	}
-	
-	
+
 }

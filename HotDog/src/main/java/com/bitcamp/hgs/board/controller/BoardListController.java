@@ -20,6 +20,7 @@ public class BoardListController {
 	public void getListPage(@RequestParam(value = "p", defaultValue = "1") int pageNum, Model model)
 			throws SQLException {
 		
+		// listView 이름으로 뷰에 전달
 		model.addAttribute("listView", listService.getPage(pageNum));
 
 	}

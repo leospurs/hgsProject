@@ -9,21 +9,21 @@ public class Pagination {
 	private int endNum;
 	private int preNum;
 	private int nextNum;
-	
+
 	public Pagination(int pageNum, int totalPageCount, int numOfDisplayPageNum) {
 		this.pageNum = pageNum;
 		this.totalPageCount = totalPageCount;
 		this.numOfDisplayPageNum = numOfDisplayPageNum;
 		calPagination();
 	}
-	
+
 	private void calPagination() {
-		if(totalPageCount>0) {
-			startNum = (pageNum-1)/numOfDisplayPageNum*numOfDisplayPageNum + 1;
-			endNum = startNum + numOfDisplayPageNum -1;
+		if (totalPageCount > 0) {
+			startNum = (pageNum - 1) / numOfDisplayPageNum * numOfDisplayPageNum + 1;
+			endNum = startNum + numOfDisplayPageNum - 1;
 			endNum = endNum > totalPageCount ? totalPageCount : endNum;
-			preNum = startNum-1 < numOfDisplayPageNum ? 0 : startNum-1;
-			nextNum = endNum == totalPageCount ? 0 : endNum+1; 
+			preNum = startNum - 1 < numOfDisplayPageNum ? 0 : startNum - 1;
+			nextNum = endNum == totalPageCount ? 0 : endNum + 1;
 		}
 	}
 
@@ -54,6 +54,5 @@ public class Pagination {
 	public int getNextNum() {
 		return nextNum;
 	}
-	
-	
+
 }

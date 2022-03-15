@@ -6,11 +6,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.bitcamp.hgs.board.dao.BoardLikeDao">
 
-	<select id="getList"
+	<select id="findLike"
 		resultType="com.bitcamp.hgs.board.domain.BoardLikes">
-		SELECT * FROM hgs.board_likes WHERE board_idx=${boardIdx}
-
-
+		SELECT * FROM hgs.board_likes WHERE board_Idx=${boardIdx}
 	</select>
 
 </mapper>

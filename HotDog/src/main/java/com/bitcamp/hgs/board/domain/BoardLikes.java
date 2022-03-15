@@ -2,8 +2,8 @@ package com.bitcamp.hgs.board.domain;
 
 public class BoardLikes {
 	
-	private int boardIdx;
-	private int memberIdx;
+	private int boardIdx;	// 게시물 번호
+	private int memberIdx;	// 회원 번호
 	
 	public BoardLikes(int boardIdx, int memberIdx) {
 		this.boardIdx = boardIdx;

@@ -17,7 +17,7 @@ public class BoardReplyService {
 	@Autowired
 	private SqlSessionTemplate template;
 
-	// 후기 목록보기
+	// 댓글 목록보기
 	public List<BoardReplys> getList(int boardIdx) {
 
 		return template.getMapper(BoardReplyDao.class).getList(boardIdx);
@@ -41,8 +41,8 @@ public class BoardReplyService {
 	// 댓글 수정
 	public int updateReply(BoardReplys reply) {
 
-	dao = template.getMapper(BoardReplyDao.class);
+		dao = template.getMapper(BoardReplyDao.class);
 
-	return dao.updateReply(reply);
-	 }
+		return dao.updateReply(reply);
+	}
 }
