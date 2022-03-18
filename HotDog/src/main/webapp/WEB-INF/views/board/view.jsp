@@ -223,7 +223,8 @@ div.reply>div.close>div {
 				<a href="list" class="btn btn-success">목록</a>
 				<c:if test="${logger.name eq pageView.name}">
 					<a href="update?boardIdx=${pageView.boardIdx}" class="btn btn-info">수정</a>
-					<a href="delete?boardIdx=${pageView.boardIdx}" class="btn btn-danger">삭제</a>
+					<a href="delete?boardIdx=${pageView.boardIdx}"
+						class="btn btn-danger">삭제</a>
 				</c:if>
 
 			</div>
@@ -234,48 +235,53 @@ div.reply>div.close>div {
 	</div>
 
 	<!-- 좋아요 버튼 클릭 시 동작 -->
-	<!-- <!-- 	<script> -->
-	-->
-	<!-- //     $(document).ready(function () { -->
+	<script>
+	
+	     $(document).ready(function () {
 
-	<!-- // 	// 좋아요가 있는지 확인한 값을 heartval에 저장 -->
-	<%-- //         // var heartval = ${heart.heart} --%>
-	<!-- //         // heartval이 1이면 좋아요가 이미 되있는것이므로 heart-fill.svg를 출력하는 코드 -->
+	 		// 좋아요가 있는지 확인한 값을 heartval에 저장
+	    	var list = [${boardLike.memberIdx}];
+	 		
+	 		console.log(list);
+	 		
+	 		console.log('이값은' + $("#heart").attr("src"));
 
+	        if(list.includes(${logger.memberIdx})) {
 
-	<%-- //         var hbidx = "${heart.boardIdx}"; --%>
-	<%-- //         var hmidx = "${heart.memberIdx}"; --%>
+	             $("#heart").prop("src", "http://localhost:8080/hgs/images/heart-fill.svg");
+	             
+	         } else {
 
-	<!-- //         if(hbidx == null && hmidx == null) { -->
+	             $("#heart").prop("src", "http://localhost:8080/hgs/images/heart.svg");
+	             
+         }
 
-	<!-- //             $("#heart").prop("src", "http://localhost:8080/hgs/images/heart-fill.svg"); -->
-	<!-- //             // $(".heart").prop('name',heartval) -->
-	<!-- //         } -->
-	<!-- //         else { -->
-
-	<!-- //             $("#heart").prop("src", "http://localhost:8080/hgs/images/heart.svg"); -->
-	<!-- //             // $(".heart").prop('name',heartval) -->
-	<!-- //         } -->
-
-	<!-- // 	// 좋아요 버튼을 클릭 시 실행되는 코드 -->
-	<!-- //         $(".heart").on("click", function () { -->
-	<!-- //             var that = $(".heart"); -->
-	<!-- // 	    $.ajax({ -->
-	<!-- // 	    	url :'/board/like', -->
-	<!-- // 	        type :'POST', -->
-	<!-- // 	        data : {'boardIdx':${pageView.boardIdx}, 'memberIdx':${logger.memberIdx}}, -->
-	<!-- // 	    	success : function(data){ -->
-	<!-- // 	    		that.prop('name',data); -->
-	<!-- // 	        	if(data==1) { -->
-	<!-- // 	            	     $('#heart').prop("src","http://localhost:8080/hgs/images/heart-fill.svg"); -->
-	<!-- // 	        	} else { -->
-	<!-- //                     	     $('#heart').prop("src","http://localhost:8080/hgs/images/heart.svg"); -->
-	<!-- // 	        	} -->
-	<!-- //              	} -->
-	<!-- // 	    }); -->
-	<!-- //         }); -->
-	<!-- //     }); -->
-	<!-- <!-- 	</script> -->
+	 	// 좋아요 버튼을 클릭 시 실행되는 코드
+	        $("#heart").on("click", function () {
+	        	
+	 	    $.ajax({
+	 	    	url :'${pageContext.request.contextPath}/board/boardLike',
+	 	        type :'POST',
+	 	        data : {'boardIdx':${pageView.boardIdx}, 'memberIdx':${logger.memberIdx}},
+	 	    	success : function(data){
+	 	    		
+	 	        if($("#heart").attr("src") == "http://localhost:8080/hgs/images/heart.svg") {
+					
+	 	        	location.reload();
+	 	           	$('#heart').prop("src","http://localhost:8080/hgs/images/heart-fill.svg");
+	 	            
+	 	           
+ 	        	} else if ($("#heart").attr("src") == "http://localhost:8080/hgs/images/heart-fill.svg"){
+	                
+ 	        		location.reload();
+ 	        		$('#heart').prop("src","http://localhost:8080/hgs/images/heart.svg");
+ 	        		
+	 	        	}
+	              	}
+	 	    });
+	         });
+ 	     });
+	</script>
 
 
 
@@ -283,33 +289,33 @@ div.reply>div.close>div {
 
 	<!--  댓글작성 버튼 클릭 시 동작  -->
 	<script>
-		$("#replyWriteForm").submit(
-					function() {
-							$.ajax({
-									url : '${pageContext.request.contextPath}/board/reply',
-									type : 'POST',
-									data : $(this).serialize(),
-									success : function(data) {
+	$("#replyWriteForm").submit(
+		function() {
+			$.ajax({
+				url : '${pageContext.request.contextPath}/board/reply',
+				type : 'POST',
+				data : $(this).serialize(),
+				success : function(data) {
 
-										var html = '';
-										html += '<div id="reply'+data+'" class="media text-muted pt-3">';
-										html += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">';
-										html += '<strong class="d-block text-gray-dark">@${logger.name}</strong>';
-										html += $('#message').val();
-										html += '</p>';
-										html += '<div onclick="deleteReply('+data+')" class="badge  badge-info" style="color: black;">x</div>';
-										html += '</div>';
-										html += '<hr>';
+						var html = '';
+						html += '<div id="reply'+data+'" class="media text-muted pt-3">';
+						html += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">';
+						html += '<strong class="d-block text-gray-dark">@${logger.name}</strong>';
+						html += $('#message').val();
+						html += '</p>';
+						html += '<div onclick="deleteReply('+data+')" class="badge  badge-info" style="color: black;">x</div>';
+						html += '</div>';
+						html += '<hr>';
 
-											$('#replyList').append(html);
-											$('#content').val('');
-											location.reload();
-										},
-										error : function() {
-											console.log('통신에러!');
-										}
+						$('#replyList').append(html);
+						$('#content').val('');
+						location.reload();
+						},
+							error : function() {
+							console.log('통신에러!');
+							}
 
-									});
+							});
 
 							return false;
 						});
@@ -334,7 +340,7 @@ div.reply>div.close>div {
 			}
 		}
 	</script>
-	
+
 
 
 

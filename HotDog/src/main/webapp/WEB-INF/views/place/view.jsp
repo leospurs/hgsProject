@@ -28,53 +28,46 @@ div#content {
 </head>
 <body>
 	<div style="margin: 0 280px;">
-	
+
 		<%@ include file="/WEB-INF/views/frame/nav.jsp"%>
 		<!-- 네비게이션 끝 -->
-	
+
 		<!-- content 시작 -->
 		<main role="main" class="container">
-	
-	
-	
+
+
+
 			<div class="my-3 p-3 bg-white rounded shadow-sm">
 				<table class="table">
 					<tr></tr>
-					<td></td>
-					<td>
-						<img src="${pageContext.request.contextPath}/uploadfile/${pageView.fileName}" class="card-img-top" alt="..." style="height: 100% ">
-					</td>
-	
+					<td><img
+						src="${pageContext.request.contextPath}/uploadfile/${pageView.fileName}"
+						class="card-img-top" alt="..." style="height: 100%"></td>
+
 					<tr>
-						<td>${member.name}</td>
 						<td>${pageView.title}</td>
 					</tr>
-	
+
 					<tr>
-						<td>주소</td>
 						<td>${pageView.newAddress}</td>
 					</tr>
 					<tr>
-						<td>전화번호</td>
 						<td>${pageView.phone}</td>
 					</tr>
 					<tr>
-						<td>지역</td>
 						<td>${pageView.affiliation}</td>
 					</tr>
 					<tr>
-						<td>홈페이지</td>
 						<td><a href="${pageView.homepage}" target="_blank">${pageView.homepage}</a></td>
 					</tr>
 					<tr>
-						<td>지도</td>
 						<td><div id="map" style="width: 100%; height: 350px;"></div></td>
 					</tr>
-	
+
 				</table>
 			</div>
-	
-	
+
+
 			<div id="replyList"
 				class="col-md-8 my-3 p-3 bg-white rounded shadow-sm">
 				<h3 class="border-bottom border-gray pb-2 mb-0">댓글</h3>
@@ -85,37 +78,38 @@ div#content {
 				</c:if>
 				<c:if test="${not empty replyList}">
 					<c:forEach items="${replyList}" var="reply">
-	
-						<div id="reply${reply.placeReplyIdx}" class="media text-muted pt-3">
-	
+
+						<div id="reply${reply.placeReplyIdx}"
+							class="media text-muted pt-3">
+
 							<p>작성자 아이디</p>
 							<p>${reply.content}</p>
-	
+
 							<div onclick="deleteReply(${reply.placeReplyIdx})"
 								class="badge  badge-info" style="color: black;">X</div>
 						</div>
 					</c:forEach>
 				</c:if>
-	
+
 			</div>
-	
+
 			<div class="col-md-8 my-3 p-3 bg-white rounded shadow-sm">
 				<h5 class="border-bottom border-gray pb-2 mb-0">작성자 아이디</h5>
-	
+
 				<form id="replyWriteForm" class=" text-right" method="POST">
-	
+
 					<textarea name="content" id="content" rows="5" cols="30"
 						class="form-control p-3" required></textarea>
-	
+
 					<!-- <input type="hidden" name="memberIdx" value="${user.member.idx}"> -->
 					<input type="hidden" name="placeIdx" value="${pageView.placeIdx}">
-	
+
 					<input type="submit" value="작성" class="btn btn-success">
 				</form>
-	
+
 			</div>
-	
-	
+
+
 			<button class="btn btn-warning" data-oper='update'>수정</button>
 			<button class="btn btn-outline-warning" data-oper='list'>목록보기</button>
 			<%-- 			<c:if test="${loginInfo.idx eq pageView.memberidx}"> --%>
@@ -123,12 +117,12 @@ div#content {
 			<%-- 				<a href="javascript:deleteMessage(${pageView.idx})" --%>
 			<!-- 					class="btn btn-danger">삭제</a> -->
 			<%-- 			</c:if> --%>
-	
+
 			<form id='operForm' action="/place/update" method="get">
 				<input type="hidden" id='placeIdx' name='placeIdx'
 					value='<c:out value="${pageView.placeIdx}"/>'>
 			</form>
-	
+
 		</main>
 
 	</div>

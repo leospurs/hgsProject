@@ -6,9 +6,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.bitcamp.hgs.board.dao.BoardLikeDao">
 
-	<select id="findLike"
+	<select id="getLikeList"
+		parameterType="java.util.HashMap"
 		resultType="com.bitcamp.hgs.board.domain.BoardLikes">
-		SELECT * FROM hgs.board_likes WHERE board_Idx=${boardIdx}
+		SELECT member_idx FROM hgs.board_likes WHERE board_idx=#{boardIdx} and member_idx=#{memberIdx}
 	</select>
-
+	
+	<select id="findLike"
+		parameterType="com.bitcamp.hgs.board.domain.BoardLikes"
+		resultType="com.bitcamp.hgs.board.domain.BoardLikes">
+		SELECT member_idx FROM hgs.board_likes WHERE board_idx=#{boardIdx} and member_idx=#{memberIdx}
+	</select>
+	
+	<insert id="insertLike"
+			parameterType="com.bitcamp.hgs.board.domain.BoardLikes">
+		INSERT INTO hgs.board_likes (board_idx, member_idx)
+		VALUES (#{boardIdx}, #{memberIdx})
+	</insert>
+	
+	<delete id="deleteLike"
+			parameterType="com.bitcamp.hgs.board.domain.BoardLikes">
+		DELETE FROM hgs.board_likes WHERE board_idx=${boardIdx} and member_idx=#{memberIdx}
+	</delete>
 </mapper>

@@ -38,11 +38,7 @@ public interface BoardDao {
 		// 파일 삭제
 		public void deleteFile(int boardIdx);
 		
-		// 해당 게시물의 좋아요 전체수 
-		public int selectTotalLikeCount(int boardIdx);
 		
-		// 해당 회원의 좋아요 여부 판단 
-		public BoardLikes findLike(Map<String, Integer> number);
 		
 		
 }

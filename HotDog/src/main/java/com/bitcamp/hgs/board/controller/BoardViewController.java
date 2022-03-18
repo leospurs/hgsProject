@@ -25,12 +25,17 @@ public class BoardViewController {
 
 	@Autowired
 	private BoardLikeService likeService;
+	
 
 	@GetMapping({ "/board/view", "/board/update" })
 	public void getViewPage(@RequestParam("boardIdx") int boardIdx, HttpSession session, Model model) {
 
 		// 좋아요 여부 판단을 위한 logger 객체
 		Logger logger = (Logger) session.getAttribute("logger");
+		
+		System.out.println("logger : " + logger);
+		
+		// int memberIdx = logger.getMemberIdx();
 
 		// 게시물 상세보기 정보를 뷰에 전달
 		model.addAttribute("pageView", viewService.getPageView(boardIdx));
@@ -40,11 +45,11 @@ public class BoardViewController {
 
 		// 좋아요 기능 부분
 		BoardLikes boardLike = new BoardLikes();
-
-		boardLike = likeService.findLike(boardIdx);
-
-		System.out.println("boardLike: " + boardLike);
-
+		
+		boardLike = likeService.getLikeList(boardIdx,logger.getMemberIdx());
+		
+		System.out.println("boardLike의 값: " + boardLike);
+		
 		model.addAttribute("boardLike", boardLike);
 
 	}
