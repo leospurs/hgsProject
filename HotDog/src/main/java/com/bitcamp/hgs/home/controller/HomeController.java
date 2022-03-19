@@ -11,13 +11,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.bitcamp.hgs.home.domain.LoginFormInfo;
+import com.bitcamp.hgs.admin.domain.Admin;
 import com.bitcamp.hgs.home.domain.HomeBoard;
 import com.bitcamp.hgs.home.domain.HomePlaceScrap;
 import com.bitcamp.hgs.home.domain.HomePlaces;
-import com.bitcamp.hgs.home.service.LoginService;
+import com.bitcamp.hgs.home.domain.LoginFormInfo;
 import com.bitcamp.hgs.home.service.HomeBoardService;
 import com.bitcamp.hgs.home.service.HomePlaceService;
+import com.bitcamp.hgs.home.service.LoginService;
 import com.bitcamp.hgs.member.domain.Breed;
 import com.bitcamp.hgs.member.domain.Logger;
 import com.bitcamp.hgs.member.service.BreedService;
@@ -89,6 +90,27 @@ public class HomeController {
 	@GetMapping("/joinType")
 	public String joinType() {
 		return "home/joinType";
+	}
+
+	// 관리자 로그인 페이지
+	@GetMapping("/login/admin")
+	public String adminLogin() {
+		return "admin/loginReq";
+	}
+
+	@PostMapping("/login/admin")
+	public String postAdminLogin(Admin loginReq, HttpSession session, Model model) {
+
+		model.addAttribute("result", loginService.adminLogin(loginReq, session));
+
+		return "admin/login";
+	}
+
+	// 관리자 로그아웃
+	@GetMapping("/logout/admin")
+	public String adminLogout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
 	}
 
 }

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.bitcamp.hgs.admin.dao.AdminDao">
+
+<select id="checkAdminIdPw" resultType="com.bitcamp.hgs.admin.domain.Admin">
+	select * from admins where id=#{id}
+</select>
+
+<insert id="writeBoard" parameterType="com.bitcamp.hgs.admin.domain.AdminBoardRequest" useGeneratedKeys="true" keyProperty="adminBoardIdx">
+	insert into admin_boards (admin_board_list_idx, admin_idx, title, content) values(#{adminBoardListIdx}, #{adminIdx}, #{title}, #{content})
+</insert>
+
+<!-- BoardList -->
+<select id="selectEventBoardList" resultType="com.bitcamp.hgs.admin.domain.BoardList">
+	select * from admin_boards where admin_board_list_idx = #{i}
+</select>
+
+<!-- Board Detail -->
+<select id="selectBoard" resultType="com.bitcamp.hgs.admin.domain.BoardDetail">
+	select * from admin_boards where admin_board_idx=#{idx}
+</select>
+
+</mapper>

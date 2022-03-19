@@ -35,17 +35,17 @@
 	
 	<!--  클래스 생성하면 경로 확인 후 수정 할 것 -->
 	<!-- <beans:bean id="authCheckInterceptor" class="com.bitcamp.op.member.interceptor.AuthCheckInterceptor"/> -->
+	<beans:bean id="adminAuthCheckInterceptor"
+		class="com.bitcamp.hgs.admin.interceptor.AuthCheckInterceptor" />
 	
 	<!--  클래스 생성하면 경로 확인 후 수정 할 것 -->
 	<!-- 로그인 여부 확인을 위한 인터셉터 등록 -->
-<!-- 	<interceptors> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/member/my/**"/> -->
-<!-- 			<mapping path="/member/manager/**"/> -->
-			<!-- <mapping path="/guestbook/**"/> -->
-<!-- 			<beans:ref bean="authCheckInterceptor"/> -->
-<!-- 		</interceptor> -->
-<!-- 	</interceptors> -->
+   <interceptors>
+      <interceptor>
+         <mapping path="/admin/**" />
+         <beans:ref bean="adminAuthCheckInterceptor" />
+      </interceptor>
+   </interceptors>
 	
 	
 	<!-- Java Mail 등록 -->
