@@ -38,6 +38,13 @@ public interface BoardDao {
 		// 파일 삭제
 		public void deleteFile(int boardIdx);
 		
+		// 게시물에 연결된 좋아요 삭제
+		public void deleteLike(int boardIdx);
+		
+		
+		// 게시물에 연결된 댓글 삭제
+		public void deleteReply(int boardIdx);
+		
 		
 		
 		
