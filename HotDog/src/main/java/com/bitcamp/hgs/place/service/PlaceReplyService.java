@@ -19,9 +19,7 @@ public class PlaceReplyService {
 
 	// 후기 목록보기
 	public List<PlaceReplys> getList(int placeIdx) {
-		
-		
-		
+
 		return template.getMapper(PlaceReplyDao.class).getList(placeIdx);
 	}
 
@@ -41,10 +39,10 @@ public class PlaceReplyService {
 	}
 
 	// 후기 수정
-	//public int updateReply(PlaceReplys reply) {
+	// public int updateReply(PlaceReplys reply) {
 
-		//dao = template.getMapper(PlaceReplyDao.class);
+	// dao = template.getMapper(PlaceReplyDao.class);
 
-		//return dao.updateReply(reply);
-	//}
+	// return dao.updateReply(reply);
+	// }
 }

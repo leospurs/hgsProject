@@ -32,7 +32,6 @@ public class PlaceReplyController {
 
 		replyService.deleteReply(placeReplyIdx);
 
-		System.out.println("placeReplyIdx확인:" + placeReplyIdx);
 		return String.valueOf(replyService.deleteReply(placeReplyIdx));
 	}
 

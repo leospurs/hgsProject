@@ -9,7 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
-<title>Insert title here</title>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
@@ -23,106 +23,13 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 
-
-<style>
-#content table td {
-	padding: 5px;
-}
-
-#content>table tr>td:nth-child(1) {
-	width: 100px;
-	text-align: center;
-	background-color: #ddd;
-}
-
-#content>table td>img {
-	height: 25px;
-	border: 1px solid #aaa;
-	border-radius: 50%;
-	vertical-align: middle;
-}
-
-#content>table {
-	border: 0;
-	border-collapse: collapse;
-	width: 800px;
-}
-
-#content>table td {
-	padding: 10px;
-}
-
-#content>table tr {
-	border-top: 1px solid #aaa;
-	border-bottom: 1px solid #aaa;
-}
-
-#replyArea {
-	width: 600px;
-	margin-top: 20px;
-}
-
-div.reply {
-	border: 1px solid #aaa;
-	overflow: hidden;
-	padding: 15px;
-	margin-top: 5px;
-}
-
-div.reply>div.img {
-	width: 50px;
-	float: left;
-}
-
-div.reply>div.img>img {
-	width: 40px;
-	height: 40px;
-	border: 1px solid #aaa;
-	border-radius: 50%;
-}
-
-div.reply>div.content {
-	width: 480 px;
-	float: left;
-}
-
-div.reply>div.close {
-	width: 30px;
-	float: right;
-}
-
-div.reply>div.close>div {
-	width: 25px;
-	height: 25px;
-	text-align: center;
-	line-height: 20px;
-	background-color: #aaa;
-}
-
-#replyWrite {
-	width: 600px;
-	margin-top: 20px;
-}
-
-#replyWrite>h4 {
-	margin: 5px 0;
-}
-
-#replyWrite textarea {
-	width: 100%;
-	font-size: 120%;
-	padding: 5px;
-}
-
-#replyWrite>form {
-	text-align: right;
-}
-</style>
+<title>커뮤니티 > ${pageView.title}</title>
 
 
 </head>
 <body>
 	<div style="margin: 0 280px;">
+		<!-- Top Nav bar -->
 		<%@ include file="/WEB-INF/views/frame/nav.jsp"%>
 
 
@@ -153,24 +60,20 @@ div.reply>div.close>div {
 							src="${pageContext.request.contextPath}/uploadfile/${pageView.fileName}"
 							width="500px"></td>
 					</tr>
-					<tr>
-						<td><span class="badge bg-secondary"><h5>#간식</h5></span> <span
-							class="badge bg-secondary"><h5>#손</h5></span> <span
-							class="badge bg-secondary"><h5>#불독</h5></span></td>
-					</tr>
+<!-- 					<tr> -->
+<!-- 						<td><span class="badge bg-secondary"><h5>#간식</h5></span> <span -->
+<!-- 							class="badge bg-secondary"><h5>#손</h5></span> <span -->
+<!-- 							class="badge bg-secondary"><h5>#불독</h5></span></td> -->
+<!-- 					</tr> -->
 				</table>
 
 				<!-- 좋아요 하트 영역 -->
 				<div>
-					<a class="text-dark heart" style="text-decoration-line: none;">
+					<a class="text-dark heart" style="text-decoration-line: none; cursor:pointer;">
 						<img id="heart" src="http://localhost:8080/hgs/images/heart.svg">
 						좋아요
 					</a>
 				</div>
-
-
-
-
 			</div>
 
 			<div id="replyList"
@@ -196,7 +99,7 @@ div.reply>div.close>div {
 							</p>
 
 							<div onclick="deleteReply(${reply.boardReplyIdx})"
-								class="badge  badge-info" style="color: red;">X</div>
+								class="badge  badge-info" style="color: red; cursor:pointer;">X</div>
 						</div>
 					</c:forEach>
 				</c:if>
@@ -264,7 +167,9 @@ div.reply>div.close>div {
 	 	        type :'POST',
 	 	        data : {'boardIdx':${pageView.boardIdx}, 'memberIdx':${logger.memberIdx}},
 	 	    	success : function(data){
-	 	    		
+	 	    	
+	 	    	console.log(data);
+	 	    	
 	 	        if($("#heart").attr("src") == "http://localhost:8080/hgs/images/heart.svg") {
 					
 	 	        	location.reload();

@@ -6,7 +6,8 @@ public class PlaceReplys {
 	
 	private int placeReplyIdx;	// 추천 장소 댓글 idx
 	private int placeIdx;		// 추천 장소 idx
-	private int memberIdx = 1;		// 일반 회원 idx
+	private int memberIdx;		// 일반 회원 idx
+	private String name;			// 회원 이름
 	private int star;			// 별점 
 	private String content;		// 추천 장소 댓글 내용
 	private String fileName;	// 파일 이름
@@ -15,12 +16,13 @@ public class PlaceReplys {
 	
 	public PlaceReplys() {}
 	
-	public PlaceReplys(int placeReplyIdx, int placeIdx, int memberIdx, int star, String content, String fileName,
+	public PlaceReplys(int placeReplyIdx, int placeIdx, int memberIdx, String name, int star, String content, String fileName,
 			Timestamp createDate, Timestamp editDate) {
 		
 		this.placeReplyIdx = placeReplyIdx;
 		this.placeIdx = placeIdx;
 		this.memberIdx = memberIdx;
+		this.name = name;
 		this.star = star;
 		this.content = content;
 		this.fileName = fileName;
@@ -50,6 +52,16 @@ public class PlaceReplys {
 
 	public void setMemberIdx(int memberIdx) {
 		this.memberIdx = memberIdx;
+	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getStar() {

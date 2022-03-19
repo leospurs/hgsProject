@@ -13,13 +13,16 @@ public class PlaceDeleteController {
 
 	@Autowired
 	private PlaceDeleteService deleteService;
-	
+
 	@PostMapping("/place/delete")
 	public String deletePlace(@RequestParam("placeIdx") int placeIdx) {
+
+		// 추천장소 삭제처리를 위해 파일 삭제를 먼저 처리
+		deleteService.deleteFile(placeIdx);
 		
-		
+		// 추천장소 삭제
 		deleteService.deletePlace(placeIdx);
-		
+
 		return "redirect:/place/list";
 	}
 }

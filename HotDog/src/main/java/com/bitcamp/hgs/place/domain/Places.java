@@ -6,34 +6,35 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Places {
 	
-	private int placeIdx;	// 추천 장소idx
-	private int adminIdx = 1;	// 관리자 회원 번호idx
-	private String title;	// 추천 장소 이름
+	private int placeIdx;			// 추천 장소idx
+	private int adminIdx;			// 관리자 회원 번호idx
+	private String name;			// 일반 회원 이름
+	private String title;			// 추천 장소 이름
 	private String subjectCategory;	// 추천 장소 카테고리
-	private String affiliation;	// 추천장소 위치 지역 
-	private String oldAddress;	// 구주소
-	private String newAddress;	// 신주소
-	private String latitude;	// 위도
-	private String longitude;	// 경도
-	private String homepage;	// 홈페이지 주소
-	private String phone;	// 전화번호
-	private String openTime;	// 오픈시간
-	private int holiday;	// 휴일
+	private String affiliation;		// 추천장소 위치 지역 
+	private String oldAddress;		// 구주소
+	private String newAddress;		// 신주소
+	private String latitude;		// 위도
+	private String longitude;		// 경도
+	private String homepage;		// 홈페이지 주소
+	private String phone;			// 전화번호
+	private String openTime;		// 오픈시간
+	private int holiday;			// 휴일
 	private Timestamp insertDate;	// 등록날짜
 	private Timestamp updateDate;	// 수정날짜
-	private int state;	// 폐점여부
-	private String fileName;
-	private MultipartFile photo;
+	private int state;				// 폐점여부
+	private String fileName;		// 첨부파일 이름
+	private MultipartFile photo;	// 첨부파일
 	
 	public Places() {}
 
-	
-	public Places(int placeIdx, int adminIdx, String title, String subjectCategory, String affiliation,
+	public Places(int placeIdx, int adminIdx, String name, String title, String subjectCategory, String affiliation,
 			String oldAddress, String newAddress, String latitude, String longitude, String homepage, String phone,
 			String openTime, int holiday, Timestamp insertDate, Timestamp updateDate, int state, String fileName) {
 		
 		this.placeIdx = placeIdx;
 		this.adminIdx = adminIdx;
+		this.name = name;
 		this.title = title;
 		this.subjectCategory = subjectCategory;
 		this.affiliation = affiliation;
@@ -66,6 +67,16 @@ public class Places {
 
 	public void setAdminIdx(int adminIdx) {
 		this.adminIdx = adminIdx;
+	}
+	
+	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getTitle() {

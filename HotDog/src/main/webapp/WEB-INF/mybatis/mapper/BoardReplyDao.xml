@@ -22,12 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="registReply"
 			parameterType="com.bitcamp.hgs.board.domain.BoardReplys"
 			useGeneratedKeys="true"
-			keyProperty="boardReplyIdx"
-	>
-	
+			keyProperty="boardReplyIdx">
 	INSERT INTO board_replys (board_idx, member_idx, content) 
 	VALUES (#{boardIdx}, #{memberIdx}, #{content})
-	
 	</insert>
 	
 	

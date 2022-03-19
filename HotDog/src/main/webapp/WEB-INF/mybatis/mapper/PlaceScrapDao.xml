@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bitcamp.hgs.place.dao.PlaceScrapDao">
+
+	<select id="getScrapList"
+		parameterType="java.util.HashMap"
+		resultType="com.bitcamp.hgs.place.domain.PlaceScraps">
+		SELECT member_idx FROM hgs.place_scraps WHERE place_idx=#{placeIdx} and member_idx=#{memberIdx}
+	</select>
+	
+	<select id="findScrap"
+		parameterType="com.bitcamp.hgs.place.domain.PlaceScraps"
+		resultType="com.bitcamp.hgs.place.domain.PlaceScraps">
+		SELECT member_idx FROM hgs.place_scraps WHERE place_idx=#{placeIdx} and member_idx=#{memberIdx}
+	</select>
+	
+	<insert id="insertScrap"
+			parameterType="com.bitcamp.hgs.place.domain.PlaceScraps">
+		INSERT INTO hgs.place_scraps (place_idx, member_idx)
+		VALUES (#{placeIdx}, #{memberIdx})
+	</insert>
+	
+	<delete id="deleteScrap"
+			parameterType="com.bitcamp.hgs.place.domain.PlaceScraps">
+		DELETE FROM hgs.place_scraps WHERE place_idx=${placeIdx} and member_idx=#{memberIdx}
+	</delete>
+</mapper>

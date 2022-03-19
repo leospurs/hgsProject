@@ -38,11 +38,11 @@ public class BoardReplyService {
 		return template.getMapper(BoardReplyDao.class).deleteReply(boardReplyIdx);
 	}
 
-	// 댓글 수정
-	public int updateReply(BoardReplys reply) {
-
-		dao = template.getMapper(BoardReplyDao.class);
-
-		return dao.updateReply(reply);
-	}
+//	// 댓글 수정
+//	public int updateReply(BoardReplys reply) {
+//
+//		dao = template.getMapper(BoardReplyDao.class);
+//
+//		return dao.updateReply(reply);
+//	}
 }

@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--  namespace에는 interface의 전체 이름을 기입 -->
+
 <mapper namespace="com.bitcamp.hgs.place.dao.PlaceDao">
 
 	<!--  추천 장소 전체  목록 보기 -->
@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectByIdx"
 			resultType="com.bitcamp.hgs.place.domain.Places">
 		SELECT
-	   		p.place_idx, 
+	   		p.place_idx,
 	   		p.title,
        		p.old_address,
        		p.new_address,
@@ -33,8 +33,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        		p.subject_category,
        		p.homepage,
        		pf.file_name
-       FROM places p left outer join place_files pf on (p.place_idx = pf.place_idx)
-	   WHERE p.place_idx=#{idx} 
+       FROM places p LEFT OUTER JOIN place_files pf ON (p.place_idx = pf.place_idx)
+
+	   WHERE p.place_idx=#{placeIdx} 
 	</select>
 	
 	<!-- 추천 장소 등록 -->
@@ -69,5 +70,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	INSERT INTO hgs.place_files (place_idx, file_name, size)
 	VALUES (#{placeIdx},#{fileName},#{size})
 	</insert>
+	
+	<!-- 파일 삭제 -->
+	<delete id="deleteFile">
+	DELETE FROM hgs.place_files 
+	WHERE place_idx = #{placeIdx}
+	</delete>
 	
 	</mapper>

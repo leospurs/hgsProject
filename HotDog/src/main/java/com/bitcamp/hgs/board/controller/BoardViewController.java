@@ -30,12 +30,9 @@ public class BoardViewController {
 	@GetMapping({ "/board/view", "/board/update" })
 	public void getViewPage(@RequestParam("boardIdx") int boardIdx, HttpSession session, Model model) {
 
-		// 좋아요 여부 판단을 위한 logger 객체
+		// 로그인 사용자 정보를 받아오기 위한 logger 객체
 		Logger logger = (Logger) session.getAttribute("logger");
 		
-		System.out.println("logger : " + logger);
-		
-		// int memberIdx = logger.getMemberIdx();
 
 		// 게시물 상세보기 정보를 뷰에 전달
 		model.addAttribute("pageView", viewService.getPageView(boardIdx));

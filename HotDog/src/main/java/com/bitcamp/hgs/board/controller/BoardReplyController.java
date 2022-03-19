@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bitcamp.hgs.board.domain.BoardReplys;
 import com.bitcamp.hgs.board.service.BoardReplyService;
 
-// 댓글처리를 위한 REST 컨트롤러
 @RestController
 @RequestMapping("/board/reply")
 public class BoardReplyController {

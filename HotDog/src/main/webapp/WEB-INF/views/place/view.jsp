@@ -6,43 +6,42 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/views/frame/pageSet.jsp"%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
-
-<title>Insert title here</title>
-<style>
-div#content {
-	width: 800px
-}
-</style>
+<title>추천장소 > ${pageView.title}</title>
 
 
 </head>
 <body>
 	<div style="margin: 0 280px;">
-
+		<!-- Top Nav bar -->
 		<%@ include file="/WEB-INF/views/frame/nav.jsp"%>
-		<!-- 네비게이션 끝 -->
+
 
 		<!-- content 시작 -->
 		<main role="main" class="container">
-
-
 
 			<div class="my-3 p-3 bg-white rounded shadow-sm">
 				<table class="table">
 					<tr></tr>
 					<td><img
 						src="${pageContext.request.contextPath}/uploadfile/${pageView.fileName}"
-						class="card-img-top" alt="..." style="height: 100%"></td>
+						class="card-img-top" alt="" style="width:60%; height:350px;"></td>
 
 					<tr>
 						<td>${pageView.title}</td>
@@ -61,67 +60,76 @@ div#content {
 						<td><a href="${pageView.homepage}" target="_blank">${pageView.homepage}</a></td>
 					</tr>
 					<tr>
-						<td><div id="map" style="width: 100%; height: 350px;"></div></td>
+						<td><div id="map" style="width: 60%; height: 350px;"></div></td>
 					</tr>
 
 				</table>
+
+				<!-- 스크랩 영역 -->
+				<div>
+					<a class="text-dark scarp" style="text-decoration-line: none; cursor:pointer;">
+						<img id="scrap" src="http://localhost:8080/hgs/images/bookmark-star.svg" style="width:30px;">
+						스크랩
+					</a>
+				</div>
 			</div>
 
 
 			<div id="replyList"
-				class="col-md-8 my-3 p-3 bg-white rounded shadow-sm">
-				<h3 class="border-bottom border-gray pb-2 mb-0">댓글</h3>
+				class="col-md-12 my-3 p-3 bg-white rounded shadow-sm">
+				<h4 class="border-bottom border-gray pb-2 mb-0">후기</h4>
+				<!-- 등록된 후기가 없을 시 -->
 				<c:if test="${empty replyList}">
 					<tr>
-						<td><h3>등록된 후기가 없습니다.</h3></td>
+						<td><h5>등록된 후기가 없습니다.</h5></td>
 					</tr>
 				</c:if>
+				<!-- 등록된 후기가 있을 시 -->
 				<c:if test="${not empty replyList}">
 					<c:forEach items="${replyList}" var="reply">
 
 						<div id="reply${reply.placeReplyIdx}"
 							class="media text-muted pt-3">
 
-							<p>작성자 아이디</p>
-							<p>${reply.content}</p>
+							<p
+								class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+								<strong class="d-block text-gray-dark">@${reply.name}</strong>
+								${reply.content}
+							</p>
 
 							<div onclick="deleteReply(${reply.placeReplyIdx})"
-								class="badge  badge-info" style="color: black;">X</div>
+								class="badge  badge-info" style="color: red; cursor:pointer;">X</div>
 						</div>
 					</c:forEach>
 				</c:if>
 
 			</div>
 
-			<div class="col-md-8 my-3 p-3 bg-white rounded shadow-sm">
-				<h5 class="border-bottom border-gray pb-2 mb-0">작성자 아이디</h5>
+			<!-- 후기 작성 폼 -->
+			<div class="col-md-12 my-3 p-3 bg-white rounded shadow-sm">
+				<h5 class="border-bottom border-gray pb-2 mb-0">${logger.name}</h5>
 
 				<form id="replyWriteForm" class=" text-right" method="POST">
 
 					<textarea name="content" id="content" rows="5" cols="30"
 						class="form-control p-3" required></textarea>
 
-					<!-- <input type="hidden" name="memberIdx" value="${user.member.idx}"> -->
+					<input type="hidden" name="memberIdx" value="${logger.memberIdx}">
 					<input type="hidden" name="placeIdx" value="${pageView.placeIdx}">
-
-					<input type="submit" value="작성" class="btn btn-success">
+					<br /> <input type="submit" value="후기작성" class="btn btn-success">
 				</form>
 
 			</div>
 
+			<div class="my-3 p-3 bg-white rounded shadow-sm mb-5">
+				<a href="list" class="btn btn-success">목록</a>
+				<!-- logger가 admin이면.... --><c:if test="${logger.name eq pageView.name}">
+					<a href="update?placeIdx=${pageView.placeIdx}" class="btn btn-info">수정</a>
+					<a href="delete?placeIdx=${pageView.placeIdx}"
+						class="btn btn-danger">삭제</a>
+				</c:if>
 
-			<button class="btn btn-warning" data-oper='update'>수정</button>
-			<button class="btn btn-outline-warning" data-oper='list'>목록보기</button>
-			<%-- 			<c:if test="${loginInfo.idx eq pageView.memberidx}"> --%>
-			<%-- 				<a href="edit?idx=${pageView.idx}" class="btn btn-info">수정</a> --%>
-			<%-- 				<a href="javascript:deleteMessage(${pageView.idx})" --%>
-			<!-- 					class="btn btn-danger">삭제</a> -->
-			<%-- 			</c:if> --%>
-
-			<form id='operForm' action="/place/update" method="get">
-				<input type="hidden" id='placeIdx' name='placeIdx'
-					value='<c:out value="${pageView.placeIdx}"/>'>
-			</form>
+			</div>
 
 		</main>
 
@@ -131,26 +139,59 @@ div#content {
 
 
 
-	<!-- 수정, 목록보기 버튼 동작 -->
+	<!-- 스크랩 버튼 클릭 시 동작 -->
 	<script>
-	$(document).ready(function() {
+	
+ 	     $(document).ready(function () {
 
-		var operForm = $('#operForm')
+ 	 		// 좋아요가 있는지 확인한 값을 heartval에 저장
+ 	    	var list = [${placeScrap.memberIdx}];
+	 		
+ 	 		console.log(list);
+	 		
+ 	 		console.log('이값은' + $("#scrap").attr("src"));
 
-		$("button[data-oper='update']").on("click", function(e) {
+ 	        if(list.includes(${logger.memberIdx})) {
 
-			operForm.attr("action", "update").submit();
-		});
+ 	             $("#scrap").prop("src", "http://localhost:8080/hgs/images/bookmark-star-fill.svg");
+	             
+ 	         } else {
 
-		$("button[data-oper='list']").on("click", function(e) {
+ 	             $("#scrap").prop("src", "http://localhost:8080/hgs/images/bookmark-star.svg");
+	             
+          }
 
-			operForm.find("placeIdx").remove();
-			operForm.attr("action", "list");
-			operForm.submit();
-		});
+ 	 	// 좋아요 버튼을 클릭 시 실행되는 코드
+ 	        $("#scrap").on("click", function () {
+	        	
+ 	 	    $.ajax({
+ 	 	    	url :'${pageContext.request.contextPath}/place/placeScrap',
+ 	 	        type :'POST',
+ 	 	        data : {'placeIdx':${pageView.placeIdx}, 'memberIdx':${logger.memberIdx}},
+ 	 	    	success : function(data){
+	 	    		
+ 	 	    		console.log(data);
+ 	 	    		
+ 	 	        if($("#scrap").attr("src") == "http://localhost:8080/hgs/images/bookmark-star.svg") {
+					
+ 	 	        	location.reload();
+ 	 	        	
+ 	 	           	$('#scrap').prop("src","http://localhost:8080/hgs/images/bookmark-star-fill.svg");
+	 	            
+	 	           
+  	        	} else if ($("#scrap").attr("src") == "http://localhost:8080/hgs/images/bookmark-star-fill.svg"){
+	                
+  	        		location.reload();
+  	        		
+  	        		$('#scrap').prop("src","http://localhost:8080/hgs/images/bookmark-star.svg");
+ 	        		
+ 	 	        	}
+ 	              	}
+ 	 	    });
+ 	         });
+  	     });
+	</script> 
 
-	});
-	</script>
 
 
 
@@ -166,12 +207,12 @@ div#content {
 									success : function(data) {
 
 											var html = '';
-							
 											html += '<div id="reply'+data+'" class="media text-muted pt-3">';
 											html += '<p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">';
-											html += $('#content').val();
+											html += '<strong class="d-block text-gray-dark">@${logger.name}</strong>';
+											html += $('#message').val();
 											html += '</p>';
-											html += '<div onclick="deleteReply('+ data + ')" class="badge badge-info">X</div>';
+											html += '<div onclick="deleteReply('+data+')" class="badge badge-info">X</div>';
 											html += '</div>';
 																		
 											$('#replyList').append(html);
@@ -212,7 +253,8 @@ div#content {
 	
 		
 	</script>
-
+	
+	<!-- 카카오맵 API -->
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b831cb9231e82dc116c15d613033258a&libraries=services"></script>
 	<script>

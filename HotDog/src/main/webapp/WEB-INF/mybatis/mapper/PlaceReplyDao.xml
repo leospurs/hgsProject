@@ -5,29 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 <mapper namespace="com.bitcamp.hgs.place.dao.PlaceReplyDao">
-
+	
 	<select id="getList"
 			resultType="com.bitcamp.hgs.place.domain.PlaceReplys">
-	SELECT place_reply_idx,
-		   place_idx,
-		   member_idx,
-		   star,
-		   content,
-		   file_name,
-		   create_date
-	FROM hgs.place_replys WHERE place_idx=${placeIdx}
+	SELECT pr.place_reply_idx,
+		   pr.place_idx,
+		   pr.member_idx,
+		   m.name,
+		   pr.content,
+		   pr.create_date
+	FROM hgs.place_replys pr LEFT OUTER JOIN members m ON(pr.member_idx = m.member_idx) 
+	WHERE place_idx=${placeIdx}
 	</select>
 	
 	
 	<insert id="registReply"
 			parameterType="com.bitcamp.hgs.place.domain.PlaceReplys"
 			useGeneratedKeys="true"
-			keyProperty="placeReplyIdx"
-	>
-	
+			keyProperty="placeReplyIdx">
 	INSERT INTO place_replys (place_idx, member_idx, star, content) 
 	VALUES (#{placeIdx}, #{memberIdx}, #{star}, #{content})
-	
 	</insert>
 	
 	

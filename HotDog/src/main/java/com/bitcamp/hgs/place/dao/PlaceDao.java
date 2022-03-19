@@ -33,4 +33,7 @@ public interface PlaceDao {
 	// 파일 첨부
 	public void insertFile(PlaceFiles placeFiles);
 
+	// 파일 삭제
+	public void deleteFile(int placeIdx);
+
 }

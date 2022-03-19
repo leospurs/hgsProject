@@ -19,6 +19,7 @@ public class BoardDeleteController {
 
 		// 게시물 삭제처리를 위해 파일 삭제를 먼저 처리
 		deleteService.deleteFile(boardIdx);
+		
 		// 게시물 삭제
 		deleteService.deleteBoard(boardIdx);
 
