@@ -14,12 +14,13 @@ import com.bitcamp.hgs.board.domain.Boards;
 public class BoardListService {
 
 	private BoardDao dao;
-
+	
+	
 	@Autowired
 	private SqlSessionTemplate template;
 
 	// 페이지 당 표현할 추천 게시물 개수
-	private final int COUNT_PER_PAGE = 6;
+	private final int COUNT_PER_PAGE = 8;
 
 	// 페이징 번호 노출 개수
 	private final int COUNT_PER_PAGING_NUM = 5;

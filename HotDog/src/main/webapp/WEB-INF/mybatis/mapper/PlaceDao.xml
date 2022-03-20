@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        		p.subject_category,
        		pf.file_name
     	FROM places p left outer join place_files pf on (p.place_idx = pf.place_idx)
-        ORDER BY p.place_idx desc limit #{param1}, #{param2} 
+        ORDER BY p.place_idx limit #{param1}, #{param2} 
        
 	</select>
 	
@@ -34,7 +34,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
        		p.homepage,
        		pf.file_name
        FROM places p LEFT OUTER JOIN place_files pf ON (p.place_idx = pf.place_idx)
-
 	   WHERE p.place_idx=#{placeIdx} 
 	</select>
 	

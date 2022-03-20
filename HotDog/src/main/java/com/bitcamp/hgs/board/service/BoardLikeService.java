@@ -16,6 +16,12 @@ public class BoardLikeService {
 
 	@Autowired
 	private SqlSessionTemplate template;
+	
+	// 좋아요 전체 수
+	public int getLikeCount(int boardIdx) {
+		
+		return template.getMapper(BoardLikeDao.class).getLikeCount(boardIdx);
+	}
 
 	// 좋아요 목록보기
 	public BoardLikes getLikeList(int boardIdx, int memberIdx) {

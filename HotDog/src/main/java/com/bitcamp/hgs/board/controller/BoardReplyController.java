@@ -34,5 +34,7 @@ public class BoardReplyController {
 
 		return String.valueOf(replyService.deleteReply(boardReplyIdx));
 	}
+	
+	
 
 }

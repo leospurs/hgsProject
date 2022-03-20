@@ -28,8 +28,6 @@
 	<%@ include file="/WEB-INF/views/frame/nav.jsp"%>
 	
 	<!-- content 영역 시작 -->
-	<div class="PlaceList-container">
-		
 		<div id="content-header">
 			<div class="text-info">
 				<h3 class="place-text-5">추천장소</h3>
@@ -42,9 +40,10 @@
 						<li class="breadcrumb-item active" aria-current="page">추천장소</li>
 					</ol>
 				</nav>
-			</div>
-	
-			<!-- 추천장소  리스트 영역-->
+			</div>		
+		</div>
+		
+		<!-- 추천장소  리스트 영역-->
 			<!-- 추천장소 탭메뉴 -->
 			<div class="tab-menu">
 				<ul class="nav nav-pills mb-3 " id="pills-tab" role="tablist">
@@ -69,9 +68,8 @@
 			<div>
 				<a class="btn btn-primary" href="register" role="button">등록</a>
 			</div>
-			
-		</div>
-	</div>	
+	
+
 		<!-- 추천장소 리스트 영역 -->
 		<div class="place-list">
 			<c:if test="${not empty listView.list}">

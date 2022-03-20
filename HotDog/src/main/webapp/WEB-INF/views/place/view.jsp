@@ -141,10 +141,9 @@
 
 	<!-- 스크랩 버튼 클릭 시 동작 -->
 	<script>
-	
  	     $(document).ready(function () {
 
- 	 		// 좋아요가 있는지 확인한 값을 heartval에 저장
+ 	 		// 기존 스크랩이 있는지 확인한 값을 heartval에 저장
  	    	var list = [${placeScrap.memberIdx}];
 	 		
  	 		console.log(list);
@@ -161,9 +160,8 @@
 	             
           }
 
- 	 	// 좋아요 버튼을 클릭 시 실행되는 코드
- 	        $("#scrap").on("click", function () {
-	        	
+ 	 	// 스크랩 버튼을 클릭 시 실행되는 코드
+ 	    $("#scrap").on("click", function () {	
  	 	    $.ajax({
  	 	    	url :'${pageContext.request.contextPath}/place/placeScrap',
  	 	        type :'POST',
@@ -186,10 +184,10 @@
   	        		$('#scrap').prop("src","http://localhost:8080/hgs/images/bookmark-star.svg");
  	        		
  	 	        	}
- 	              	}
- 	 	    });
- 	         });
-  	     });
+ 	              }
+ 	 	      });
+ 	       });
+  	    });
 	</script> 
 
 

@@ -23,7 +23,7 @@ public class PlaceScrapController {
 		System.out.println("입력된 값: " + placeScrap);
 
 		scrapService.insertScrap(placeScrap);
-
+		
 	}
 
 }
