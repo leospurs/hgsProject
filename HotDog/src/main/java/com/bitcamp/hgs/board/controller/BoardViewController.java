@@ -48,6 +48,9 @@ public class BoardViewController {
 		System.out.println("boardLike의 값: " + boardLike);
 		
 		model.addAttribute("boardLike", boardLike);
+		
+		// 해시태그 기능 부분
+		// 현재 작업중
 
 	}
 }

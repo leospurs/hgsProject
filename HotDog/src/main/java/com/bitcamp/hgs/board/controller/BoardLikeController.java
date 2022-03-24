@@ -16,11 +16,9 @@ public class BoardLikeController {
 	@Autowired
 	private BoardLikeService likeService;
 
-	// 좋아요 입력
+	// 좋아요 입력  및 삭제(Service에서 삭제 작업)
 	@PostMapping
 	public void insertBoardLike(@ModelAttribute BoardLikes boardLike) {
-
-		System.out.println("입력된 값: " + boardLike);
 
 		likeService.insertLike(boardLike);
 

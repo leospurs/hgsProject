@@ -18,7 +18,7 @@
 			<a href="/hgs/board/list">커뮤니티</a>
 		</div>
 		<div>
-			<a href="#">이벤트</a>
+			<a href="${pageContext.request.contextPath}/board/list/event">이벤트</a>
 		</div>
 		<div>
 			<a href="/hgs/place/list">추천장소</a>

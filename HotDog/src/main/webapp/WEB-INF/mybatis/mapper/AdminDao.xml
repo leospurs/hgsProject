@@ -16,12 +16,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- BoardList -->
 <select id="selectEventBoardList" resultType="com.bitcamp.hgs.admin.domain.BoardList">
-	select * from admin_boards where admin_board_list_idx = #{i}
+	select * from admin_boards  where admin_board_list_idx = #{param1} order by admin_board_idx desc limit #{param2}, #{param3}
 </select>
 
+<!-- BoardList Total Count -->
+<select id="selectTotalCount" resultType="int">
+	select count(*) from admin_boards where admin_board_list_idx=#{i}
+</select>
 <!-- Board Detail -->
 <select id="selectBoard" resultType="com.bitcamp.hgs.admin.domain.BoardDetail">
 	select * from admin_boards where admin_board_idx=#{idx}
 </select>
+
+<!-- Board Update -->
+<update id="editBoard" parameterType="com.bitcamp.hgs.admin.domain.BoardEditReq">
+	update admin_boards set admin_board_list_idx=#{adminBoardListIdx}, title=#{title}, content=#{content} where admin_board_idx=#{adminBoardIdx}
+</update>
 
 </mapper>

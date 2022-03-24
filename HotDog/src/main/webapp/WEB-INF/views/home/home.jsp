@@ -15,7 +15,7 @@
 	<!-- Top nav Bar -->
 	<%@ include file="/WEB-INF/views/frame/nav.jsp"%>
 	
-	<!-- 서치 결과, 이걸 include하믄 좋은디 머리가 안돌아간다. -->
+	<!-- 검색 결과 -->
 	<div class="search-container" id="search-container" style="display: none"  >
 	</div>
 	
