@@ -52,7 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE hgs.boards SET
 		title = #{title},
 		content = #{content}
-		where board_idx = #{boardIdx}
+		
+		WHERE board_idx = #{boardIdx}
 	</update>
 	
 	<!-- 파일 등록  -->

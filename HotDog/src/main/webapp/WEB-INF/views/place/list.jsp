@@ -28,7 +28,7 @@
 	<%@ include file="/WEB-INF/views/frame/nav.jsp"%>
 	
 	<!-- content 영역 시작 -->
-		<div id="content-header">
+		<div id="container-1">
 			<div class="text-info">
 				<h3 class="place-text-5">추천장소</h3>
 				<!-- 스크럼블 메뉴 -->

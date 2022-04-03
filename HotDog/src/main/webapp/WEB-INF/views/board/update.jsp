@@ -71,6 +71,12 @@ div.col-12 {
 					<input class="form-control" name="content" 
 						value='<c:out value="${pageView.content}"/>'>
 				</div>
+				
+				<div class="mb-3">
+					<label label for="photo" class="form-label">사진</label> 
+					<input type="file" class="form-control" name="photo" 
+						value='<c:out value="${pageView.fileName}"/>'>
+				</div>
 
 				<div class="col-12">
 					<button class="btn btn-warning" type="submit" data-oper='update'>수정</button>
