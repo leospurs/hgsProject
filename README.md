@@ -3,7 +3,6 @@
 
 Spring MVC패턴과 REST API로 구현
 
-![](../header.png)
 
 ## 기술 스텍
 
@@ -16,6 +15,6 @@ Spring MVC패턴과 REST API로 구현
 ## 참여 인원
 
 * 이호재
-* 지명근 - [Github](https://github.com/jian-level-is/hgs) 
-* 구성모 - [Github](https://github.com/gusm96/hgs) 
+* [지명근](https://github.com/jian-level-is/hgs) 
+* [구성모](https://github.com/gusm96/hgs) 
 
